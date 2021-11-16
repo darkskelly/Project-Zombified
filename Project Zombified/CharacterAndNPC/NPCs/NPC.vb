@@ -1,0 +1,92 @@
+﻿Public Class NPC
+    Inherits MapGenerator
+    Public Sub BigHouseGenerator(ByVal x, y)
+        For l = 0 To 10
+            For i = 0 To 10
+                MapGenerator.Map(x + i, y + l, 0) = blockID.WoodPlank
+            Next
+
+        Next
+        For i = 0 To 10
+            MapGenerator.Map(x + i, y, 0) = blockID.Cobblestone
+            MapGenerator.Map(x + i, y + 10, 0) = blockID.Cobblestone
+            MapGenerator.Map(x, y + i, 0) = blockID.Cobblestone
+            MapGenerator.Map(x + 10, y + i, 0) = blockID.Cobblestone
+        Next
+        MapGenerator.Map(x + 5, y, 0) = blockID.WoodPlank
+
+    End Sub
+    Public Sub DrawNPC(ByVal x, y, CharacterModel, NPCState, HouseSize)
+        BigHouseGenerator(x - 1, y - 1)
+        If HouseSize = True Then
+            BigHouseGenerator(x - 1, y - 1)
+        ElseIf HouseSize = False Then
+            HouseGenerator(x - 1, y - 1)
+        End If
+        Select Case MapGenerator.MoveTime
+            Case 0
+                MapGenerator.Map(x, y, 0) = CharacterModel
+                MapGenerator.Map(x, y, 4) = NPCState 'ID For SNOC
+                MapGenerator.Map(x, y + 1, 0) = blockID.WoodPlank
+                MapGenerator.Map(x, y + 1, 4) = 0
+            Case 1
+                MapGenerator.Map(x + 1, y, 0) = CharacterModel
+                MapGenerator.Map(x + 1, y, 4) = NPCState
+                MapGenerator.Map(x, y, 0) = blockID.WoodPlank
+                MapGenerator.Map(x, y, 4) = 0
+
+            Case 2
+                MapGenerator.Map(x + 1, y + 1, 0) = CharacterModel
+                MapGenerator.Map(x + 1, y + 1, 4) = NPCState
+                MapGenerator.Map(x + 1, y, 0) = blockID.WoodPlank
+                MapGenerator.Map(x = 1, y, 4) = 0
+            Case 3
+                MapGenerator.Map(x, y + 1, 0) = CharacterModel
+                MapGenerator.Map(x, y + 1, 4) = NPCState
+                MapGenerator.Map(x + 1, y + 1, 0) = blockID.WoodPlank
+                MapGenerator.Map(x + 1, y + 1, 4) = 0
+
+        End Select
+
+
+    End Sub
+
+
+
+    Public Sub DrawSwordHouse()
+        HouseGenerator(50, 45)
+        MapGenerator.Map(52, 44, 0) = Character.ItemModel.Sword
+        MapGenerator.Map(52, 44, 4) = 4
+        MapGenerator.Map(51, 44, 0) = blockID.WoodPlank
+        MapGenerator.Map(51, 43, 0) = blockID.WoodPlank
+        MapGenerator.Map(52, 43, 0) = blockID.WoodPlank
+
+    End Sub
+    Public Sub DrawMerchantHouse()
+
+        HouseGenerator(99, 102)
+    End Sub
+    Public Sub HouseGenerator(ByVal x, y)
+        MapGenerator.Map(x, y, 0) = blockID.Cobblestone
+        MapGenerator.Map(x + 1, y, 0) = blockID.Cobblestone
+        MapGenerator.Map(x + 2, y, 0) = blockID.Cobblestone
+        'RightSide
+        MapGenerator.Map(x + 3, y, 0) = blockID.Cobblestone
+        MapGenerator.Map(x + 3, y - 1, 0) = blockID.Cobblestone
+        MapGenerator.Map(x + 3, y - 2, 0) = blockID.Cobblestone
+        MapGenerator.Map(x + 3, y - 3, 0) = blockID.Cobblestone
+        'FrontSide
+        MapGenerator.Map(x + 2, y - 3, 0) = blockID.Cobblestone
+        MapGenerator.Map(x, y - 3, 0) = blockID.Cobblestone
+        'LeftSide
+        MapGenerator.Map(x, y - 2, 0) = blockID.Cobblestone
+        MapGenerator.Map(x, y - 1, 0) = blockID.Cobblestone
+        MapGenerator.Map(x, y, 0) = blockID.Cobblestone
+    End Sub
+End Class
+
+
+
+
+
+
