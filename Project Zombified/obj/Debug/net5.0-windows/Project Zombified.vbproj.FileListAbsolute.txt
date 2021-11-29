@@ -1,0 +1,33 @@
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\bin\Debug\net5.0-windows\Project Zombified.exe
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\bin\Debug\net5.0-windows\Project Zombified.deps.json
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\bin\Debug\net5.0-windows\Project Zombified.runtimeconfig.json
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\bin\Debug\net5.0-windows\Project Zombified.runtimeconfig.dev.json
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\bin\Debug\net5.0-windows\Project Zombified.dll
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\bin\Debug\net5.0-windows\ref\Project Zombified.dll
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\bin\Debug\net5.0-windows\Project Zombified.pdb
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.MapGenerator.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.Resources.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.vbproj.GenerateResource.cache
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.AssemblyInfoInputs.cache
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.AssemblyInfo.vb
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.vbproj.CoreCompileInputs.cache
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.dll
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\ref\Project Zombified.dll
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.pdb
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.genruntimeconfig.cache
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.GFX.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.MapEditor.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.Credits.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.SetupCharacter.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.CharacterCreation.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.Character.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project Zombified.vbproj.AssemblyReference.cache
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.InvInterface.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.Roulette.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.MenuScreen.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.DepositScreen.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.KingsleyBuyScreen.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.KingsleyInterface.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.NPC.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.CharacterCreationScreen.resources
