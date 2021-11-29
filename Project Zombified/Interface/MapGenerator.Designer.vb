@@ -169,6 +169,7 @@ Partial Class MapGenerator
         Me.Controls.Add(Me.lblFile)
         Me.Controls.Add(Me.Button1)
         Me.Name = "MapGenerator"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "MapGenerator"
         Me.ResumeLayout(False)
         Me.PerformLayout()

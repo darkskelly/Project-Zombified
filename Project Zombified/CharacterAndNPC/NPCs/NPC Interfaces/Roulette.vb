@@ -38,6 +38,7 @@
         BetRed = False
     End Sub
 
+
     Private Sub REven_Click(sender As Object, e As EventArgs) Handles REven.Click
         If CheckBal() = True And CoinBalance.Text > BetAmount.Text Then
             BetEven = True

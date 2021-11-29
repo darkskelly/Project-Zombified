@@ -1,8 +1,8 @@
 ﻿Public Class MenuScreen
 
     Private Sub NewGame_Click(sender As Object, e As EventArgs) Handles NewGame.Click
-        MapGenerator.Show()
-        MapGenerator.StartGame()
+        CharacterCreationScreen.Show()
+
         Me.Hide()
 
     End Sub

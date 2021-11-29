@@ -31,7 +31,7 @@ Partial Class MenuScreen
         '
         'Credit
         '
-        Me.Credit.Location = New System.Drawing.Point(334, 268)
+        Me.Credit.Location = New System.Drawing.Point(470, 274)
         Me.Credit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Credit.Name = "Credit"
         Me.Credit.Size = New System.Drawing.Size(119, 58)
@@ -41,7 +41,7 @@ Partial Class MenuScreen
         '
         'Tutorial
         '
-        Me.Tutorial.Location = New System.Drawing.Point(251, 172)
+        Me.Tutorial.Location = New System.Drawing.Point(387, 178)
         Me.Tutorial.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Tutorial.Name = "Tutorial"
         Me.Tutorial.Size = New System.Drawing.Size(299, 38)
@@ -51,7 +51,7 @@ Partial Class MenuScreen
         '
         'LoadGame
         '
-        Me.LoadGame.Location = New System.Drawing.Point(251, 220)
+        Me.LoadGame.Location = New System.Drawing.Point(387, 226)
         Me.LoadGame.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.LoadGame.Name = "LoadGame"
         Me.LoadGame.Size = New System.Drawing.Size(299, 38)
@@ -61,7 +61,7 @@ Partial Class MenuScreen
         '
         'NewGame
         '
-        Me.NewGame.Location = New System.Drawing.Point(251, 125)
+        Me.NewGame.Location = New System.Drawing.Point(387, 131)
         Me.NewGame.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.NewGame.Name = "NewGame"
         Me.NewGame.Size = New System.Drawing.Size(299, 38)
@@ -69,7 +69,7 @@ Partial Class MenuScreen
         Me.NewGame.Text = "Start New Game"
         Me.NewGame.UseVisualStyleBackColor = True
         '
-        'Form1
+        'MenuScreen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -79,7 +79,7 @@ Partial Class MenuScreen
         Me.Controls.Add(Me.Tutorial)
         Me.Controls.Add(Me.LoadGame)
         Me.Controls.Add(Me.NewGame)
-        Me.Name = "Form1"
+        Me.Name = "MenuScreen"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
 

@@ -92,14 +92,6 @@
                 G.DrawImage(BmpTile, DRect, SRect, GraphicsUnit.Pixel)
             Next
         Next
-
-        'Shows how many tiles player can move
-        If mMapX = XPos And mMapY = YPos Then
-            G.DrawRectangle(Pens.Purple, (XPos + 1) * Tilesize, (YPos) * Tilesize, Tilesize, Tilesize)
-            G.DrawRectangle(Pens.Purple, (XPos - 1) * Tilesize, (YPos) * Tilesize, Tilesize, Tilesize)
-            G.DrawRectangle(Pens.Purple, (XPos) * Tilesize, (YPos + 1) * Tilesize, Tilesize, Tilesize)
-            G.DrawRectangle(Pens.Purple, (XPos) * Tilesize, (YPos - 1) * Tilesize, Tilesize, Tilesize)
-        End If
         'Menu
         G.DrawRectangle(Pens.Red, MouseX * Tilesize, MouseY * Tilesize, Tilesize, Tilesize)
         'Character.DrawCharacterInfo()
@@ -195,7 +187,6 @@
     End Enum
     Public Sub GetSourceBlock(ByVal x As Integer, ByVal y As Integer, ByVal TileSize As Integer)
 
-
         Select Case Map(x, y, 0)
             Case blockID.Grass 'Grass
                 SRect = New Rectangle(0, 0, TileSize, TileSize)
@@ -206,7 +197,6 @@
             Case blockID.Trees2 ' Trees2
                 SRect = New Rectangle(96, 0, TileSize, TileSize)
                 Map(x, y, 1) = 1 'Impassible
-
             Case blockID.Dandilions ' Dandilions
                 SRect = New Rectangle(0, 64, TileSize, TileSize)
                 Map(x, y, 1) = 0
@@ -279,8 +269,6 @@
             Case Character.CharacterModel.CasinoMan 'Casino NPC
                 SRect = New Rectangle(0, 96, TileSize, TileSize)
                 Map(x, y, 1) = 1
-
-
             Case blockID.WoodPlank 'WoodPlank
                 SRect = New Rectangle(0, 160, TileSize, TileSize)
                 Map(x, y, 1) = 0
@@ -612,7 +600,9 @@
             Roulette.Show()
         ElseIf Map(Math.Floor(CharX / Tilesize), (CharY / Tilesize) - 1, 4) = 2 Then
             KingsleyInterface.Show()
-
+            'Map(x,y,1) = Roulette
+            'Map(x,y,2) = KingsleyInterface
+            'May(x,y,3) = Merchant?
         End If
     End Sub
 
@@ -784,15 +774,16 @@
             Case "f"
                 PlaceBlock()
             Case "i"
-                InvInterface.Show()
                 InvInterface.UpdateInv()
+                InvInterface.Show()
+
 
         End Select
 
     End Sub
 
     Private Sub Stats_Click(sender As Object, e As EventArgs) Handles Stats.Click
-        CharacterCreation.Show()
+        CharacterCreationScreen.Show()
 
     End Sub
 
@@ -884,8 +875,11 @@
 
                 LastRnd = rndnumb
                 If rndnumb = 18 Or rndnumb = 19 Or rndnumb = 20 Or rndnumb = 21 Or rndnumb = 22 Or rndnumb = 23 Then
-                    Map(x + 1, y + 1, 2) = 3
+                    For i = 1 To 4
+                        Map(x + 1, y + 1, 2) = 3
                         Map(x + 1, y + 1, 0) = rndnumb
+                    Next
+
 
 
 
@@ -940,7 +934,7 @@
             Dim sw As New IO.StreamWriter(CharacterFile & "character" & ".IWantToSmashMyHeadAgainstAWall")
             Dim strLine As String = ""
 
-            strLine = strLine & "," & Stone & "," & Wood & "," & Flowers & "," & Cactus & "," & Character.PlayerCoinBalance & "," & Character.HasSword
+            strLine = strLine & Stone & "," & Wood & "," & Flowers & "," & Cactus & "," & Character.PlayerCoinBalance & "," & Character.HasSword & "," & CharacterCreationScreen.CharClass & "," & CharacterCreationScreen.CharModelName
 
             sw.WriteLine(strLine)
             strLine = ""
