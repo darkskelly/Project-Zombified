@@ -128,6 +128,7 @@ Partial Class MapGenerator
         Me.SaveName.Name = "SaveName"
         Me.SaveName.Size = New System.Drawing.Size(125, 27)
         Me.SaveName.TabIndex = 23
+        Me.SaveName.TabStop = False
         '
         'SaveButton
         '
@@ -135,6 +136,7 @@ Partial Class MapGenerator
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(132, 51)
         Me.SaveButton.TabIndex = 22
+        Me.SaveButton.TabStop = False
         Me.SaveButton.Text = "Save Map"
         Me.SaveButton.UseVisualStyleBackColor = True
         '
@@ -144,6 +146,7 @@ Partial Class MapGenerator
         Me.Stats.Name = "Stats"
         Me.Stats.Size = New System.Drawing.Size(94, 29)
         Me.Stats.TabIndex = 26
+        Me.Stats.TabStop = False
         Me.Stats.Text = "Stats"
         Me.Stats.UseVisualStyleBackColor = True
         '

@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property BattleScreen() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("BattleScreen", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Characters() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Characters", resourceCulture)
@@ -163,6 +173,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property MageBattleScreenEnemy() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("MageBattleScreenEnemy", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property MageIcon() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("MageIcon", resourceCulture)
@@ -186,6 +206,16 @@ Namespace My.Resources
         Friend ReadOnly Property PaladinIcon() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("PaladinIcon", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property PlayerBackGround() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("PlayerBackGround", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

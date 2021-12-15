@@ -108,7 +108,7 @@
         'Drawing Character
         Character.Startup()
         Randomize()
-
+        NPC.DrawNPC(160, 100, Character.CharacterModel.Firemage, 3, True)
         NPC.DrawNPC(140, 40, Character.CharacterModel.CasinoMan, 1, True)
         NPC.DrawNPC(RandX, RandY, Character.CharacterModel.Kingsley, 2, True)
 
@@ -581,29 +581,44 @@
                 End If
 
         End Select
-        If Map(Math.Floor(CharX / Tilesize) + 1, CharY / Tilesize, 4) = 1 Then
-            Roulette.Show()
-        ElseIf Map(Math.Floor(CharX / Tilesize) + 1, CharY / Tilesize, 4) = 2 Then
-            KingsleyInterface.Show()
-        End If
-        If Map(Math.Floor(CharX / Tilesize) - 1, CharY / Tilesize, 4) = 1 Then
-            Roulette.Show()
-        ElseIf Map(Math.Floor(CharX / Tilesize) - 1, CharY / Tilesize, 4) = 2 Then
-            KingsleyInterface.Show()
-        End If
-        If Map(Math.Floor(CharX / Tilesize), (CharY / Tilesize) + 1, 4) = 1 Then
-            Roulette.Show()
-        ElseIf Map(Math.Floor(CharX / Tilesize), (CharY / Tilesize) + 1, 4) = 2 Then
-            KingsleyInterface.Show()
-        End If
-        If Map(Math.Floor(CharX / Tilesize), (CharY / Tilesize) - 1, 4) = 1 Then
-            Roulette.Show()
-        ElseIf Map(Math.Floor(CharX / Tilesize), (CharY / Tilesize) - 1, 4) = 2 Then
-            KingsleyInterface.Show()
-            'Map(x,y,1) = Roulette
-            'Map(x,y,2) = KingsleyInterface
-            'May(x,y,3) = Merchant?
-        End If
+
+        Select Case Map(Math.Floor(CharX / Tilesize) + 1, CharY / Tilesize, 4)
+            Case 1
+                Roulette.Show()
+            Case 2
+                KingsleyInterface.Show()
+            Case 3
+                FightScreen.Show()
+        End Select
+        Select Case Map(Math.Floor(CharX / Tilesize) - 1, CharY / Tilesize, 4)
+            Case 1
+                Roulette.Show()
+            Case 2
+                KingsleyInterface.Show()
+            Case 3
+                FightScreen.Show()
+        End Select
+        Select Case Map(Math.Floor(CharX / Tilesize), (CharY / Tilesize) + 1, 4)
+            Case 1
+                Roulette.Show()
+            Case 2
+                KingsleyInterface.Show()
+            Case 3
+                FightScreen.Show()
+        End Select
+        Select Case Map(Math.Floor(CharX / Tilesize), (CharY / Tilesize) - 1, 4)
+            Case 1
+                Roulette.Show()
+            Case 2
+                KingsleyInterface.Show()
+            Case 3
+                FightScreen.Show()
+        End Select
+
+        'Map(x,y,4)1 = Roulette
+        'Map(x,y,4) 2= KingsleyInterface
+        'May(x,y,4) 3= Merchant?
+
     End Sub
 
     Sub PlaceBlock()

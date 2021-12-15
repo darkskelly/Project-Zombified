@@ -26,7 +26,8 @@
         Select Case MapGenerator.MoveTime
             Case 0
                 MapGenerator.Map(x, y, 0) = CharacterModel
-                MapGenerator.Map(x, y, 4) = NPCState 'ID For SNOC
+                MapGenerator.Map(x, y, 4) = NPCState 'ID
+                'SNOC
                 MapGenerator.Map(x, y + 1, 0) = blockID.WoodPlank
                 MapGenerator.Map(x, y + 1, 4) = 0
             Case 1
@@ -82,6 +83,19 @@
         MapGenerator.Map(x, y - 2, 0) = blockID.Cobblestone
         MapGenerator.Map(x, y - 1, 0) = blockID.Cobblestone
         MapGenerator.Map(x, y, 0) = blockID.Cobblestone
+    End Sub
+
+    Private Sub InitializeComponent()
+        Me.SuspendLayout()
+        '
+        'NPC
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
+        Me.ClientSize = New System.Drawing.Size(1251, 699)
+        Me.Name = "NPC"
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
     End Sub
 End Class
 

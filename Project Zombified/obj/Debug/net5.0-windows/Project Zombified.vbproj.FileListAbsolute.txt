@@ -31,3 +31,4 @@ C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project
 C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.KingsleyInterface.resources
 C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.NPC.resources
 C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.CharacterCreationScreen.resources
+C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\obj\Debug\net5.0-windows\Project_Zombified.FightScreen.resources

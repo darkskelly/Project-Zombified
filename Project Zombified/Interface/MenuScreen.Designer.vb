@@ -74,11 +74,13 @@ Partial Class MenuScreen
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1067, 517)
         Me.Controls.Add(Me.Credit)
         Me.Controls.Add(Me.Tutorial)
         Me.Controls.Add(Me.LoadGame)
         Me.Controls.Add(Me.NewGame)
+        Me.DoubleBuffered = True
         Me.Name = "MenuScreen"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
