@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <Folder Include="bin\Debug\Resources\" />
+    <Folder Include="CharacterAndNPC\NPCs\NewFolder\" />
   </ItemGroup>
 
 </Project>

@@ -16,13 +16,14 @@
         MapGenerator.Map(x + 5, y, 0) = blockID.WoodPlank
 
     End Sub
-    Public Sub DrawNPC(ByVal x, y, CharacterModel, NPCState, HouseSize)
-        BigHouseGenerator(x - 1, y - 1)
-        If HouseSize = True Then
-            BigHouseGenerator(x - 1, y - 1)
-        ElseIf HouseSize = False Then
-            HouseGenerator(x - 1, y - 1)
-        End If
+    Public Sub DrawNPC(ByVal x, y, CharacterModel, NPCState, HouseType)
+        Select Case HouseType
+            Case "Casino"
+                CasinoGenerator(x - 1, y - 1)
+            Case "Normal"
+                BigHouseGenerator(x - 1, y - 1)
+            Case "Merchant"
+        End Select
         Select Case MapGenerator.MoveTime
             Case 0
                 MapGenerator.Map(x, y, 0) = CharacterModel
@@ -68,6 +69,7 @@
         HouseGenerator(99, 102)
     End Sub
     Public Sub HouseGenerator(ByVal x, y)
+        'Backside
         MapGenerator.Map(x, y, 0) = blockID.Cobblestone
         MapGenerator.Map(x + 1, y, 0) = blockID.Cobblestone
         MapGenerator.Map(x + 2, y, 0) = blockID.Cobblestone
@@ -84,7 +86,26 @@
         MapGenerator.Map(x, y - 1, 0) = blockID.Cobblestone
         MapGenerator.Map(x, y, 0) = blockID.Cobblestone
     End Sub
+    Public Sub CasinoGenerator(ByVal x, y)
+        For l = 0 To 10
+            For i = 0 To 10
+                MapGenerator.Map(x + i, y + l, 0) = blockID.WoodPlank
+            Next
 
+        Next
+        'Casino Man Standing at x + 2 , y + 1
+        MapGenerator.Map(x + 2, y + 2, 0) = blockID.Table
+
+        MapGenerator.Map(x + 3, y + 2, 0) = blockID.RouletteWheel
+        For i = 0 To 10
+            MapGenerator.Map(x + i, y, 0) = blockID.Cobblestone
+            MapGenerator.Map(x + i, y + 10, 0) = blockID.Cobblestone
+            MapGenerator.Map(x, y + i, 0) = blockID.Cobblestone
+            MapGenerator.Map(x + 10, y + i, 0) = blockID.Cobblestone
+        Next
+        MapGenerator.Map(x + 5, y, 0) = blockID.WoodPlank
+
+    End Sub
     Private Sub InitializeComponent()
         Me.SuspendLayout()
         '
@@ -97,6 +118,8 @@
         Me.PerformLayout()
 
     End Sub
+
+
 End Class
 
 

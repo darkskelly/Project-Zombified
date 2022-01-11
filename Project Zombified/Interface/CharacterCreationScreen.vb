@@ -1,8 +1,10 @@
 ﻿Public Class CharacterCreationScreen
     Public CharClass As String
     Public CharModelName As String
-    Private Sub CharacterCreationScreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public SkillPoint As Integer
 
+    Private Sub CharacterCreationScreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        SkillPoint += 10
     End Sub
 
     Private Sub Character_Trackbar_Label_Click(sender As Object, e As EventArgs) Handles Character_Trackbar_Label.Click
@@ -15,7 +17,12 @@
     Private Sub Movement_Click(sender As Object, e As EventArgs) Handles Movement.Click
         If MovementSpeedBar.Value >= 100 Then
         Else
-            MovementSpeedBar.Value += 10
+            If SkillPoint > 0 Then
+                SkillPoint -= 1
+                MovementSpeedBar.Value += 10
+                UpdateLabels()
+            End If
+
         End If
 
         'MapGenerator.MovementSpeed += 2
@@ -25,7 +32,13 @@
     Private Sub StrengthStatButton_Click(sender As Object, e As EventArgs) Handles StrengthStatButton.Click
         If StrengthBar.Value >= 100 Then
         Else
-            StrengthBar.Value += 10
+            If SkillPoint > 0 Then
+                SkillPoint -= 1
+
+                StrengthBar.Value += 10
+                UpdateLabels()
+            End If
+
         End If
 
     End Sub
@@ -34,14 +47,24 @@
 
         If IntellegenceBar.Value >= 100 Then
         Else
-            IntellegenceBar.Value += 10
+            If SkillPoint > 0 Then
+                SkillPoint -= 1
+                IntellegenceBar.Value += 10
+                UpdateLabels()
+            End If
+
         End If
     End Sub
 
     Private Sub DexterityButton_Click(sender As Object, e As EventArgs) Handles DexterityButton.Click
         If DexterityBar.Value >= 100 Then
         Else
-            DexterityBar.Value += 10
+            If SkillPoint > 0 Then
+                SkillPoint -= 1
+                DexterityBar.Value += 10
+                UpdateLabels()
+            End If
+
         End If
 
     End Sub
@@ -51,7 +74,12 @@
         If LuckBar.Value >= 100 Then
 
         Else
-            LuckBar.Value += 10
+            If SkillPoint > 0 Then
+                SkillPoint -= 1
+                LuckBar.Value += 10
+                UpdateLabels()
+            End If
+
         End If
         If LuckBar.Value < 10 Then
 
@@ -88,10 +116,18 @@
                 Character.CharModel = 4
                 CharSelectionPic.Image = My.Resources.PrincessLeggy
                 CharModelName = "Princess"
+            Case 6
+                Character.CharModel = 5
+                CharSelectionPic.Image = My.Resources.Florance
+                CharModelName = "Florance"
         End Select
 
         CharName.Text = CharModelName
 
+    End Sub
+    Public Sub UpdateLabels()
+        SkillPointsLabel.Text = "You have " & SkillPoint & " Skill Points left!"
+        PlayerLevelLabel.Text = "You are level " & Character.CharacterLevel
     End Sub
 
     Private Sub Class_Hunter_Click(sender As Object, e As EventArgs) Handles Class_Hunter.Click
@@ -122,4 +158,6 @@
     Private Sub CharSelectionPic_Click(sender As Object, e As EventArgs) Handles CharSelectionPic.Click
 
     End Sub
+
+
 End Class

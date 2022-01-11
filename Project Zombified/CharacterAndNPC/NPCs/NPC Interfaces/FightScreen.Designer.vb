@@ -40,6 +40,8 @@ Partial Class FightScreen
         Me.MeleeAttack = New System.Windows.Forms.Button()
         Me.EnemyMoveLabel = New System.Windows.Forms.Label()
         Me.PlayerMoves = New System.Windows.Forms.Label()
+        Me.WinLooseLabel = New System.Windows.Forms.Label()
+        Me.ExperienceGainedLabel = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -115,6 +117,7 @@ Partial Class FightScreen
         'EnemyHealth
         '
         Me.EnemyHealth.Location = New System.Drawing.Point(596, 250)
+        Me.EnemyHealth.MarqueeAnimationSpeed = 1000
         Me.EnemyHealth.Maximum = 120
         Me.EnemyHealth.Name = "EnemyHealth"
         Me.EnemyHealth.Size = New System.Drawing.Size(160, 29)
@@ -123,10 +126,12 @@ Partial Class FightScreen
         'PlayerHealth
         '
         Me.PlayerHealth.Location = New System.Drawing.Point(316, 482)
+        Me.PlayerHealth.MarqueeAnimationSpeed = 1000
         Me.PlayerHealth.Maximum = 120
         Me.PlayerHealth.Name = "PlayerHealth"
         Me.PlayerHealth.Size = New System.Drawing.Size(160, 29)
         Me.PlayerHealth.TabIndex = 9
+        Me.PlayerHealth.Value = 20
         '
         'PlayerHealthLabel
         '
@@ -206,6 +211,28 @@ Partial Class FightScreen
         Me.PlayerMoves.Size = New System.Drawing.Size(0, 20)
         Me.PlayerMoves.TabIndex = 17
         '
+        'WinLooseLabel
+        '
+        Me.WinLooseLabel.AutoSize = True
+        Me.WinLooseLabel.Enabled = False
+        Me.WinLooseLabel.Font = New System.Drawing.Font("Algerian", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.WinLooseLabel.Location = New System.Drawing.Point(232, 174)
+        Me.WinLooseLabel.Name = "WinLooseLabel"
+        Me.WinLooseLabel.Size = New System.Drawing.Size(163, 38)
+        Me.WinLooseLabel.TabIndex = 18
+        Me.WinLooseLabel.Text = "You Died"
+        Me.WinLooseLabel.Visible = False
+        '
+        'ExperienceGainedLabel
+        '
+        Me.ExperienceGainedLabel.AutoSize = True
+        Me.ExperienceGainedLabel.Location = New System.Drawing.Point(232, 212)
+        Me.ExperienceGainedLabel.Name = "ExperienceGainedLabel"
+        Me.ExperienceGainedLabel.Size = New System.Drawing.Size(166, 20)
+        Me.ExperienceGainedLabel.TabIndex = 19
+        Me.ExperienceGainedLabel.Text = "You gain 50 experience!"
+        Me.ExperienceGainedLabel.Visible = False
+        '
         'FightScreen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -213,6 +240,8 @@ Partial Class FightScreen
         Me.BackgroundImage = Global.Project_Zombified.My.Resources.Resources.BattleScreen
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(856, 573)
+        Me.Controls.Add(Me.ExperienceGainedLabel)
+        Me.Controls.Add(Me.WinLooseLabel)
         Me.Controls.Add(Me.PlayerMoves)
         Me.Controls.Add(Me.EnemyMoveLabel)
         Me.Controls.Add(Me.MeleeAttack)
@@ -257,4 +286,6 @@ Partial Class FightScreen
     Friend WithEvents MeleeAttack As Button
     Friend WithEvents EnemyMoveLabel As Label
     Friend WithEvents PlayerMoves As Label
+    Friend WithEvents WinLooseLabel As Label
+    Friend WithEvents ExperienceGainedLabel As Label
 End Class

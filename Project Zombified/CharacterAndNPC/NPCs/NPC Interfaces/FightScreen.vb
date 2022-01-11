@@ -1,7 +1,11 @@
 ﻿Public Class FightScreen
     Public Visibility As Integer
     Public TotalDamage As Integer
-    Public TurnOver As Boolean = False
+
+    Public WinCond As Boolean = False
+    Enum PlayerAttack
+        MeleeAttack
+    End Enum
     'Rolling Dice for combat
     Private Function RollD6() As Integer
         Randomize()
@@ -29,7 +33,20 @@
     End Sub
     'Fighting Sequence ===========================================================================================================================================================================================================
     Public Sub FightStartup()
+        WinLooseLabel.Visible = False
+        ExperienceGainedLabel.Visible = False
+        PlayerHealth.Value = 120
+        EnemyHealth.Value = 120
         ChangeVisibility(1)
+        'While 
+        '    PDead = False
+        '    EDead = False
+        'End While
+        'If PlayerHealth.Value > 0 Then
+        '    PDead = True
+        'Else
+        '    EDead = True
+        'End If
     End Sub
     Public Sub ChangeVisibility(Visibility)
         Select Case Visibility
@@ -74,34 +91,78 @@
     End Sub
     'Fight Moves ===========================================================================================================================================================================================================
     Private Sub StrongMelee_Click(sender As Object, e As EventArgs) Handles StrongMelee.Click
-        ChangeVisibility(3)
-        RollDice()
-        TotalDamage = (RollD10() + RollD6()) * RollD6Num2()
-        EnemyHealthLabel.Text -= TotalDamage
-        EnemyTurn()
+        If PlayerHealth.Value > 0 Or EnemyHealth.Value > 0 Then
+            ChangeVisibility(3)
+            RollDice()
+            TotalDamage = (RollD10() + RollD6()) * RollD6Num2()
+            If EnemyHealthLabel.Text < TotalDamage Then
+                EnemyHealth.Value = 0
+                EnemyHealthLabel.Text = 0
+                WinCond = True
+                FightEnd()
+            Else
+                EnemyHealthLabel.Text -= TotalDamage
+                EnemyHealth.Value -= TotalDamage
+            End If
+            PlayerMoves.Text = "You did " & TotalDamage & " Damage and used big hitter"
+
+            EnemyTurn()
+        Else
+
+        End If
+
     End Sub
 
     Private Sub MeleeAttack_Click(sender As Object, e As EventArgs) Handles MeleeAttack.Click
-        ChangeVisibility(3)
-        RollDice()
-        TotalDamage = (RollD10() * RollD6())
-        EnemyHealthLabel.Text -= TotalDamage
-        EnemyTurn()
+        If PlayerHealth.Value > 0 Or EnemyHealth.Value > 0 Then
+            ChangeVisibility(3)
+            RollDice()
+            TotalDamage = (RollD10() * RollD6())
+            If EnemyHealthLabel.Text < TotalDamage Then
+                EnemyHealth.Value = 0
+                EnemyHealthLabel.Text = 0
+                WinCond = True
+                FightEnd()
+
+            Else
+                EnemyHealthLabel.Text -= TotalDamage
+                EnemyHealth.Value -= TotalDamage
+            End If
+            PlayerMoves.Text = "You did " & TotalDamage & " Damage and used Melee attack"
+            EnemyTurn()
+        Else
+
+        End If
+
     End Sub
 
     Private Sub ConfusionMove_Click(sender As Object, e As EventArgs) Handles ConfusionMove.Click
         ChangeVisibility(3)
         RollDice()
         'Chance at attacker missing turn
+
         EnemyTurn()
     End Sub
-
     Private Sub RangedAttack_Click(sender As Object, e As EventArgs) Handles RangedAttack.Click
-        ChangeVisibility(3)
-        RollDice()
-        TotalDamage = (RollD6() + RollD6Num2()) * RollD10()
-        EnemyHealthLabel.Text -= TotalDamage
-        EnemyTurn()
+        If PlayerHealth.Value > 0 Or EnemyHealth.Value > 0 Then
+            ChangeVisibility(3)
+            RollDice()
+            TotalDamage = (RollD6() + RollD6Num2()) * RollD10()
+            If EnemyHealthLabel.Text < TotalDamage Then
+                EnemyHealth.Value = 0
+                EnemyHealthLabel.Text = 0
+                WinCond = True
+                FightEnd()
+            Else
+                EnemyHealthLabel.Text -= TotalDamage
+                EnemyHealth.Value -= TotalDamage
+            End If
+            PlayerMoves.Text = "You did " & TotalDamage & " Damage and used Ranged attack"
+            EnemyTurn()
+        Else
+
+        End If
+
     End Sub
     'Enemy attack =============================================================================================================================================================================================================
     Dim EnemyDamage As Integer
@@ -112,39 +173,88 @@
         Return D62
     End Function
     Public Sub EnemyTurn()
-        RandAttack()
-        Select Case RandAttack()
-            Case 1
-                EnemyMelee()
-                EnemyMoveLabel.Text = "Enemy did " & EnemyDamage & " Damage and used Melee"
-            Case 2
-                EnemyRanged()
-                EnemyMoveLabel.Text = "Enemy did " & EnemyDamage & " Damage and used Ranged attack"
-            Case 3
-                EnemyStrongMelee()
-                EnemyMoveLabel.Text = "Enemy did " & EnemyDamage & " Damage and used Big hitter"
-            Case 4
-                EnemyConfusion()
-                EnemyMoveLabel.Text = "Enemy did " & EnemyDamage & " Damage and used Confusion"
-        End Select
-        EnemyMoveLabel.Visible = True
+        If PlayerHealth.Value > 0 Or EnemyHealth.Value > 0 Then
+            RandAttack()
+            Select Case RandAttack()
+                Case 1
+                    EnemyMelee()
+                    EnemyMoveLabel.Text = "Enemy did " & EnemyDamage & " Damage and used Melee"
+                Case 2
+                    EnemyRanged()
+                    EnemyMoveLabel.Text = "Enemy did " & EnemyDamage & " Damage and used Ranged attack"
+                Case 3
+                    EnemyStrongMelee()
+                    EnemyMoveLabel.Text = "Enemy did " & EnemyDamage & " Damage and used Big hitter"
+                Case 4
+                    EnemyConfusion()
+                    EnemyMoveLabel.Text = "Enemy did " & EnemyDamage & " Damage and used Confusion"
+            End Select
+            EnemyMoveLabel.Visible = True
+        Else
+
+        End If
+
     End Sub
     Public Sub EnemyMelee()
         RollDice()
         EnemyDamage = (RollD10() * RollD6())
-        PlayerHealthLabel.Text -= EnemyDamage
+        If PlayerHealthLabel.Text < EnemyDamage Then
+            PlayerHealthLabel.Text = 0
+            PlayerHealth.Value = 0
+            WinCond = False
+            FightEnd()
+        Else
+            PlayerHealthLabel.Text -= EnemyDamage
+            PlayerHealth.Value -= EnemyDamage
+        End If
+
+
     End Sub
     Public Sub EnemyStrongMelee()
         RollDice()
         EnemyDamage = (RollD10() + RollD6()) * RollD6Num2()
-        PlayerHealthLabel.Text -= EnemyDamage
+        If PlayerHealthLabel.Text < EnemyDamage Then
+            PlayerHealthLabel.Text = 0
+            PlayerHealth.Value = 0
+            WinCond = False
+            FightEnd()
+        Else
+            PlayerHealthLabel.Text -= EnemyDamage
+            PlayerHealth.Value -= EnemyDamage
+        End If
     End Sub
     Public Sub EnemyRanged()
         RollDice()
         EnemyDamage = (RollD6() + RollD6Num2()) * RollD10()
-        PlayerHealthLabel.Text -= EnemyDamage
+        If PlayerHealthLabel.Text < EnemyDamage Then
+            PlayerHealthLabel.Text = 0
+            PlayerHealth.Value = 0
+            WinCond = False
+            FightEnd()
+
+        Else
+            PlayerHealthLabel.Text -= EnemyDamage
+            PlayerHealth.Value -= EnemyDamage
+        End If
     End Sub
     Public Sub EnemyConfusion()
 
+    End Sub
+    ' END OF GAME ==========================================================================================================================
+    Public Sub FightEnd()
+        If WinCond = True Then
+            Character.AddExperience(50)
+            WinCond = False
+            WinLooseLabel.Text = "You Win!!" : WinLooseLabel.Visible = True
+            ExperienceGainedLabel.Text = "You are now at " & Character.PlayerExperience : ExperienceGainedLabel.Visible = True
+            CharacterCreationScreen.UpdateLabels()
+
+        Else
+            WinLooseLabel.Text = "You died" : WinLooseLabel.Visible = True
+        End If
+    End Sub
+
+    Private Sub FightScreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        FightStartup()
     End Sub
 End Class

@@ -34,5 +34,7 @@
         End Select
     End Sub
 
+    Private Sub inv11_Click(sender As Object, e As EventArgs) Handles inv11.Click
 
+    End Sub
 End Class

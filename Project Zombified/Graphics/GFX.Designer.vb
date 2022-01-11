@@ -33,6 +33,7 @@ Partial Class GFX
         Me.InventoryScreen = New System.Windows.Forms.PictureBox()
         Me.StonePB = New System.Windows.Forms.PictureBox()
         Me.GUI = New System.Windows.Forms.PictureBox()
+        Me.FloranceGFX = New System.Windows.Forms.PictureBox()
         CType(Me.pbGFX, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PaladinGFX, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KingsleyGFX, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -43,12 +44,14 @@ Partial Class GFX
         CType(Me.InventoryScreen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.StonePB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GUI, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FloranceGFX, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pbGFX
         '
         Me.pbGFX.BackgroundImage = CType(resources.GetObject("pbGFX.BackgroundImage"), System.Drawing.Image)
         Me.pbGFX.ErrorImage = CType(resources.GetObject("pbGFX.ErrorImage"), System.Drawing.Image)
+        Me.pbGFX.Image = CType(resources.GetObject("pbGFX.Image"), System.Drawing.Image)
         Me.pbGFX.InitialImage = CType(resources.GetObject("pbGFX.InitialImage"), System.Drawing.Image)
         Me.pbGFX.Location = New System.Drawing.Point(-1, 3)
         Me.pbGFX.Name = "pbGFX"
@@ -129,7 +132,7 @@ Partial Class GFX
         '
         'StonePB
         '
-        Me.StonePB.Image = Global.Project_Zombified.My.Resources.Resources.Stone
+        Me.StonePB.Image = CType(resources.GetObject("StonePB.Image"), System.Drawing.Image)
         Me.StonePB.Location = New System.Drawing.Point(409, 236)
         Me.StonePB.Name = "StonePB"
         Me.StonePB.Size = New System.Drawing.Size(34, 35)
@@ -145,11 +148,22 @@ Partial Class GFX
         Me.GUI.TabIndex = 9
         Me.GUI.TabStop = False
         '
+        'FloranceGFX
+        '
+        Me.FloranceGFX.BackgroundImage = CType(resources.GetObject("FloranceGFX.BackgroundImage"), System.Drawing.Image)
+        Me.FloranceGFX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.FloranceGFX.Location = New System.Drawing.Point(394, 277)
+        Me.FloranceGFX.Name = "FloranceGFX"
+        Me.FloranceGFX.Size = New System.Drawing.Size(32, 32)
+        Me.FloranceGFX.TabIndex = 10
+        Me.FloranceGFX.TabStop = False
+        '
         'GFX
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(542, 400)
+        Me.Controls.Add(Me.FloranceGFX)
         Me.Controls.Add(Me.GUI)
         Me.Controls.Add(Me.StonePB)
         Me.Controls.Add(Me.InventoryScreen)
@@ -172,6 +186,7 @@ Partial Class GFX
         CType(Me.InventoryScreen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.StonePB, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GUI, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FloranceGFX, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -187,4 +202,5 @@ Partial Class GFX
     Public WithEvents InventoryScreen As PictureBox
     Friend WithEvents StonePB As PictureBox
     Friend WithEvents GUI As PictureBox
+    Friend WithEvents FloranceGFX As PictureBox
 End Class

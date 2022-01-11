@@ -6,13 +6,41 @@
     Public BmpNPC As Bitmap
     Public PlayerCoinBalance As Integer
     Public HasSword As Boolean
+    Public CharacterLevel As Integer
+    Public PlayerExperience As Integer
+    Public Experience As Integer
+    Public Sub AddExperience(Experience As Integer)
+        PlayerExperience += Experience
+        UpdateExperience(PlayerExperience)
+        Experience = 0
 
+    End Sub
+    Public Sub UpdateExperience(PlayerExperience As Integer)
+        Select Case PlayerExperience
+            Case 200 'Level 2
+                CharacterLevel = 2
+                CharacterCreationScreen.SkillPoint += 2
+            Case 400 'Level 3
+                CharacterLevel = 3
+                CharacterCreationScreen.SkillPoint += 2
+            Case 600 'Level 4
+                CharacterLevel = 4
+                CharacterCreationScreen.SkillPoint += 2
+            Case 800 'Level 5 
+                CharacterLevel = 5
+                CharacterCreationScreen.SkillPoint += 2
+            Case 1000 'Level 6
+                CharacterLevel = 6
+                CharacterCreationScreen.SkillPoint += 2
+        End Select
+    End Sub
     Enum CharacterModel
         CasinoMan = 35
         Kingsley = 29
         Princess = 31
         Paladin = 33
         Firemage = 34
+        Florance = 35
     End Enum
     Enum ItemModel
         Sword = 32
@@ -48,7 +76,8 @@
 
             Case 4
                 BmpChar = New Bitmap(GFX.PrincessGFX.BackgroundImage)
-
+            Case 5
+                BmpChar = New Bitmap(GFX.FloranceGFX.BackgroundImage)
 
         End Select
     End Sub

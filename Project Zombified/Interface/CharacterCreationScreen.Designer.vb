@@ -46,6 +46,8 @@ Partial Class CharacterCreationScreen
         Me.Skills_Label = New System.Windows.Forms.Label()
         Me.Comfirm_Finish = New System.Windows.Forms.Button()
         Me.CharName = New System.Windows.Forms.Label()
+        Me.SkillPointsLabel = New System.Windows.Forms.Label()
+        Me.PlayerLevelLabel = New System.Windows.Forms.Label()
         CType(Me.CharSelectionPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Character_TrackBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -127,7 +129,7 @@ Partial Class CharacterCreationScreen
         'Character_TrackBar
         '
         Me.Character_TrackBar.Location = New System.Drawing.Point(245, 212)
-        Me.Character_TrackBar.Maximum = 5
+        Me.Character_TrackBar.Maximum = 6
         Me.Character_TrackBar.Minimum = 1
         Me.Character_TrackBar.Name = "Character_TrackBar"
         Me.Character_TrackBar.Size = New System.Drawing.Size(130, 56)
@@ -256,12 +258,34 @@ Partial Class CharacterCreationScreen
         Me.CharName.Size = New System.Drawing.Size(0, 20)
         Me.CharName.TabIndex = 23
         '
+        'SkillPointsLabel
+        '
+        Me.SkillPointsLabel.AutoSize = True
+        Me.SkillPointsLabel.Font = New System.Drawing.Font("Algerian", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.SkillPointsLabel.Location = New System.Drawing.Point(476, 41)
+        Me.SkillPointsLabel.Name = "SkillPointsLabel"
+        Me.SkillPointsLabel.Size = New System.Drawing.Size(265, 19)
+        Me.SkillPointsLabel.TabIndex = 24
+        Me.SkillPointsLabel.Text = "You have 10 Skill Points left"
+        '
+        'PlayerLevelLabel
+        '
+        Me.PlayerLevelLabel.AutoSize = True
+        Me.PlayerLevelLabel.Font = New System.Drawing.Font("Algerian", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.PlayerLevelLabel.Location = New System.Drawing.Point(203, 366)
+        Me.PlayerLevelLabel.Name = "PlayerLevelLabel"
+        Me.PlayerLevelLabel.Size = New System.Drawing.Size(149, 19)
+        Me.PlayerLevelLabel.TabIndex = 25
+        Me.PlayerLevelLabel.Text = "You are Level 1"
+        '
         'CharacterCreationScreen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.BlueViolet
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.PlayerLevelLabel)
+        Me.Controls.Add(Me.SkillPointsLabel)
         Me.Controls.Add(Me.CharName)
         Me.Controls.Add(Me.Comfirm_Finish)
         Me.Controls.Add(Me.Skills_Label)
@@ -317,4 +341,7 @@ Partial Class CharacterCreationScreen
     Friend WithEvents Skills_Label As Label
     Friend WithEvents Comfirm_Finish As Button
     Friend WithEvents CharName As Label
+    Friend WithEvents SkillPoints As Label
+    Friend WithEvents SkillPointsLabel As Label
+    Friend WithEvents PlayerLevelLabel As Label
 End Class

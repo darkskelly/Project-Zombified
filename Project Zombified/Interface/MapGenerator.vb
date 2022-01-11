@@ -9,8 +9,8 @@
     Public tTicks As Integer = 0
     Public MaxTicks As Integer = 0
     'Map Variables
-    Public MapWidth As Integer = 300
-    Public MapHeight As Integer = 300
+    Public MapWidth As Integer = 3000
+    Public MapHeight As Integer = 3000
     Public Map(MapWidth, MapHeight, 6) As Integer
 
     Public MapX As Integer = 150
@@ -108,9 +108,9 @@
         'Drawing Character
         Character.Startup()
         Randomize()
-        NPC.DrawNPC(160, 100, Character.CharacterModel.Firemage, 3, True)
-        NPC.DrawNPC(140, 40, Character.CharacterModel.CasinoMan, 1, True)
-        NPC.DrawNPC(RandX, RandY, Character.CharacterModel.Kingsley, 2, True)
+        NPC.DrawNPC(160, 100, Character.CharacterModel.Firemage, 3, "Normal")
+        NPC.DrawNPC(140, 40, Character.CharacterModel.CasinoMan, 1, "Casino")
+        NPC.DrawNPC(RandX, RandY, Character.CharacterModel.Kingsley, 2, "Normal")
 
 
 
@@ -183,6 +183,12 @@
         SnowBiomeRedFlowerPot = 25
         WoodPlank = 27
         Cobblestone = 28
+        BlackChair = 29
+        Table = 30
+        SofaChair = 31
+        RouletteWheel = 32
+        GraveStone = 36
+
 
     End Enum
     Public Sub GetSourceBlock(ByVal x As Integer, ByVal y As Integer, ByVal TileSize As Integer)
@@ -293,6 +299,23 @@
             Case Character.CharacterModel.Firemage 'FireMage NPC
                 SRect = New Rectangle(160, 192, TileSize, TileSize)
                 Map(x, y, 1) = 0
+            Case blockID.GraveStone
+                SRect = New Rectangle(224, 128, TileSize, TileSize)
+                Map(x, y, 1) = 1
+            Case blockID.SofaChair
+                SRect = New Rectangle(288, 160, TileSize, TileSize)
+                Map(x, y, 1) = 0
+            Case blockID.BlackChair
+                SRect = New Rectangle(224, 96, TileSize, TileSize)
+                Map(x, y, 1) = 0
+            Case blockID.RouletteWheel
+                SRect = New Rectangle(256, 160, TileSize, TileSize)
+                Map(x, y, 1) = 1
+            Case blockID.Table
+                SRect = New Rectangle(160, 64, TileSize, TileSize)
+                Map(x, y, 1) = 1
+            Case Character.CharacterModel.Florance
+                SRect = New Rectangle(288, 192, TileSize, TileSize)
         End Select
 
     End Sub
@@ -617,7 +640,7 @@
 
         'Map(x,y,4)1 = Roulette
         'Map(x,y,4) 2= KingsleyInterface
-        'May(x,y,4) 3= Merchant?
+        'May(x,y,4) 3= fight
 
     End Sub
 
@@ -821,12 +844,9 @@
 
         Dim RandX, RandY, Count As Integer
 
-        ' Powerflower = New Bitmap(GFX.ItemsGraphics.BackgroundImage, 0, 32, )
 
-        HealthPot = New Bitmap(GFX.ItemsGraphics.BackgroundImage)
-        Sword = New Bitmap(GFX.ItemsGraphics.BackgroundImage)
-        For x = 0 To (MapWidth / 2) - 3
-            For y = 0 To (MapHeight / 2) - 3
+        For x = 0 To 50 ' (MapWidth / 2) - 3
+            For y = 0 To (MapHeight) - 3
                 If rndnumb = LastRnd Then
                     rndnumb = rnd.Next(0, 16)
                 End If
@@ -849,9 +869,9 @@
                 End If
             Next
         Next
-        For x = (MapWidth / 3) - 3 To MapWidth - 3
+        For x = 50 To 100 ' (MapWidth / 3) - 3 To MapWidth - 3
             TileCounter += 1
-            For y = (MapHeight / 3) - 3 To MapHeight - 3
+            For y = 0 To (MapHeight) - 3
                 rndnumb = 0
                 If rndnumb = LastRnd Then
                     rndnumb = rnd.Next(11, 18)
@@ -871,21 +891,15 @@
                     End If
 
                 End If
-
             Next
-
-
-
-
-
         Next
 
-        For x = (MapWidth / 4) - 3 To MapWidth / 2 - 3
+        For x = 100 To 150 '(MapWidth / 4) - 3 To MapWidth / 2 - 3
 
             TileCounter += 1
-            For y = (MapHeight / 4) - 3 To MapHeight / 2 - 3
+            For y = 0 To (MapHeight) - 3
                 If rndnumb = LastRnd Then
-                    rndnumb = rnd.Next(18, 24)
+                    rndnumb = rnd.Next(18, 23)
                 End If
 
                 LastRnd = rndnumb
@@ -905,13 +919,23 @@
 
             Next
         Next
-        For x = (MapWidth / 3) - 3 To MapWidth - 3
-            For y = (MapHeight / 3) - 3 To MapHeight - 3
+        'Somehow prevents the green biome from plauging the desert
+        For x = 175 To 300
+            For y = 0 To (MapHeight) - 3
+                If Map(x, y, 0) = 0 Or Map(x, y, 0) = 1 Or Map(x, y, 0) = 2 Or Map(x, y, 0) = 3 Or Map(x, y, 0) = 4 Or Map(x, y, 0) = 5 Or Map(x, y, 0) = 6 Or Map(x, y, 0) = 7 Or Map(x, y, 0) = 8 Or Map(x, y, 0) = 9 Or Map(x, y, 0) = 10 Then
+                    Map(x, y, 0) = 7
+                End If
+            Next
+        Next
+        For x = 50 To 100
+            For y = 0 To (MapHeight) - 3
                 If Map(x, y, 0) = 0 Or Map(x, y, 0) = 1 Or Map(x, y, 0) = 2 Or Map(x, y, 0) = 3 Or Map(x, y, 0) = 4 Or Map(x, y, 0) = 5 Or Map(x, y, 0) = 6 Or Map(x, y, 0) = 7 Or Map(x, y, 0) = 8 Or Map(x, y, 0) = 9 Or Map(x, y, 0) = 10 Then
                     Map(x, y, 0) = 11
                 End If
             Next
         Next
+
+
 
         'Generates sea tile boarder
         For x = 18 To MapX + 18
@@ -937,8 +961,7 @@
         Next
         Map(125, 125, 0) = 25
         'Random Item Generation
-        Sword.MakeTransparent(Color.Magenta)
-        HealthPot.MakeTransparent(Color.Magenta)
+
         'Powerflower.MakeTransparent(Color.Magenta)
         'G.DrawImage(HealthPot, 16 * Tilesize, 1 * Tilesize, SRect, GraphicsUnit.Pixel)
 
