@@ -112,17 +112,29 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="WarriorIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WarriorIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Mage.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ChestSlot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\ChestSlot.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WoodChest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WoodChest.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Roulette" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Roulette.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HelmSlot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\HelmSlot.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Textures1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Textures.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,17 +142,23 @@
   <data name="PaladinIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Resources\PaladinIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RouletteWheelSpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RouletteWheelSpin.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GUI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\GUI.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InvFlowers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\InvFlowers.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PrincessLeggy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\PrincessLeggy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Warrior" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Graphics\Resources\Warrior.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Textures2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Textures.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BattleScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Resources\BattleScreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CactusInv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\CactusInv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TankIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Resources\TankIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,8 +169,35 @@
   <data name="MageIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Resources\MageIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WoodGloves" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WoodGloves.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WoodChestInv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WoodChestInv.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WoodShoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WoodShoes.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Resources\TGFX.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="MageBattleScreenEnemy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\MageBattleScreenEnemy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WoodHelmInv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WoodHelmInv.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HumanBrainIcon - Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\HumanBrainIcon - Copy.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShoeSlot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\ShoeSlot.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Coin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\Coin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warrior" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Warrior.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Inventory Screen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Inventory Screen.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,23 +211,29 @@
   <data name="KingsleyStoreBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\KingsleyStoreBackground.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StrengthIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\StrengthIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PaladinCharMenu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\PaladinCharMenu.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Stone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Stone.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Resources\TGFX.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RouletteWheelSpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RouletteWheelSpin.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WarriorIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Graphics\Resources\Resources\WarriorIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Florance" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Florance.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HuntIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Resources\HuntIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Characters" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Characters.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GloveSlot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\GloveSlot.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PlayerBackGround" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\PlayerBackGround.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,22 +244,31 @@
   <data name="Zomfied start screen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Resources\Zomfied start screen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GUI" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Graphics\Resources\GUI.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WoodHelm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WoodHelm.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WoodGlovesInv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WoodGlovesInv.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WoodShoesInv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WoodShoesInv.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Textures" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Textures.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WeaponSlot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\WeaponSlot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HumanBrainIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\HumanBrainIcon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Wood" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Graphics\Resources\Wood.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Coin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Graphics\Resources\Resources\Coin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MovementSpeedIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\MovementSpeedIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Textures2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Graphics\Resources\Textures.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Florance" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Graphics\Resources\Florance.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PotSlot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Graphics\Resources\Resources\PotSlot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

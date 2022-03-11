@@ -1,6 +1,12 @@
 ﻿Public Class NPC
-    Inherits MapGenerator
+    Inherits MapGenerator ' Data has to be private
+    Public X, Y, NPCState As Integer
+    Public House As String
+    Public CharacterModel As [Enum]
+
+
     Public Sub BigHouseGenerator(ByVal x, y)
+        'General Objective 3a)
         For l = 0 To 10
             For i = 0 To 10
                 MapGenerator.Map(x + i, y + l, 0) = blockID.WoodPlank
@@ -68,7 +74,10 @@
 
         HouseGenerator(99, 102)
     End Sub
+
+
     Public Sub HouseGenerator(ByVal x, y)
+        'General Objective 3a)
         'Backside
         MapGenerator.Map(x, y, 0) = blockID.Cobblestone
         MapGenerator.Map(x + 1, y, 0) = blockID.Cobblestone
@@ -86,7 +95,10 @@
         MapGenerator.Map(x, y - 1, 0) = blockID.Cobblestone
         MapGenerator.Map(x, y, 0) = blockID.Cobblestone
     End Sub
+
+
     Public Sub CasinoGenerator(ByVal x, y)
+        'General Objective 3a)
         For l = 0 To 10
             For i = 0 To 10
                 MapGenerator.Map(x + i, y + l, 0) = blockID.WoodPlank
@@ -106,24 +118,7 @@
         MapGenerator.Map(x + 5, y, 0) = blockID.WoodPlank
 
     End Sub
-    Private Sub InitializeComponent()
-        Me.SuspendLayout()
-        '
-        'NPC
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
-        Me.ClientSize = New System.Drawing.Size(1251, 699)
-        Me.Name = "NPC"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
 
-    End Sub
 
 
 End Class
-
-
-
-
-
-

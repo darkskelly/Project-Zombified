@@ -20,6 +20,8 @@
             If SkillPoint > 0 Then
                 SkillPoint -= 1
                 MovementSpeedBar.Value += 10
+                MapGenerator.Player1.MovementSpeed += 1
+
                 UpdateLabels()
             End If
 
@@ -36,6 +38,7 @@
                 SkillPoint -= 1
 
                 StrengthBar.Value += 10
+                MapGenerator.Player1.Strength += 1
                 UpdateLabels()
             End If
 
@@ -50,6 +53,8 @@
             If SkillPoint > 0 Then
                 SkillPoint -= 1
                 IntellegenceBar.Value += 10
+                MapGenerator.Player1.Intellegence += 1
+
                 UpdateLabels()
             End If
 
@@ -62,6 +67,7 @@
             If SkillPoint > 0 Then
                 SkillPoint -= 1
                 DexterityBar.Value += 10
+                MapGenerator.Player1.Dexterity += 1
                 UpdateLabels()
             End If
 
@@ -78,6 +84,7 @@
                 SkillPoint -= 1
                 LuckBar.Value += 10
                 UpdateLabels()
+                MapGenerator.Player1.Luck += 1
             End If
 
         End If
@@ -87,8 +94,11 @@
     End Sub
 
     Private Sub Comfirm_Finish_Click(sender As Object, e As EventArgs) Handles Comfirm_Finish.Click
+
         MapGenerator.Show()
         MapGenerator.StartGame()
+        Me.Hide()
+
         Me.ShowInTaskbar = False
         Me.WindowState = FormWindowState.Minimized
         Me.Opacity = 0
@@ -98,27 +108,27 @@
         Select Case Character_TrackBar.Value
             Case 1
                 Character.CharModel = 0
-                CharSelectionPic.Image = My.Resources.WarriorChar
+                CharSelectionPic.BackgroundImage = My.Resources.WarriorChar
                 CharModelName = "Warrior"
             Case 2
                 Character.CharModel = 1
-                CharSelectionPic.Image = My.Resources.PaladinCharMenu1
+                CharSelectionPic.BackgroundImage = My.Resources.PaladinCharMenu1
                 CharModelName = "Paladin"
             Case 3
                 Character.CharModel = 2
-                CharSelectionPic.Image = My.Resources.Mage
+                CharSelectionPic.BackgroundImage = My.Resources.Mage
                 CharModelName = "Mage"
             Case 4
                 Character.CharModel = 3
-                CharSelectionPic.Image = My.Resources.Kingsley
+                CharSelectionPic.BackgroundImage = My.Resources.Kingsley
                 CharModelName = "Kingsley"
             Case 5
                 Character.CharModel = 4
-                CharSelectionPic.Image = My.Resources.PrincessLeggy
+                CharSelectionPic.BackgroundImage = My.Resources.PrincessLeggy
                 CharModelName = "Princess"
             Case 6
                 Character.CharModel = 5
-                CharSelectionPic.Image = My.Resources.Florance
+                CharSelectionPic.BackgroundImage = My.Resources.Florance
                 CharModelName = "Florance"
         End Select
 

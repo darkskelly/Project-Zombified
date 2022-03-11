@@ -1,4 +1,5 @@
 ﻿Public Class MapGenerator
+
     Dim Box(12, 12) As PictureBox
     'Mouse Locations
     Public MouseX, MouseY As Integer
@@ -33,7 +34,7 @@
     Public IsRunning As Boolean = True
     'Character Variables
     Dim CharacterFile As String = ""
-    Public Player1 As New PlayerStorage
+    'Public Player1 As New PlayerStorage
     Public Sword, HealthPot, PowerFlower As Bitmap
     Public InventoryScreen As Bitmap
     Public XPos As Integer = 18
@@ -41,7 +42,7 @@
     Public CharX As Integer = (MapX + 18) * Tilesize
     Public CharY As Integer = (MapY + 11) * Tilesize
     Public Turn As Integer
-    Public MovementSpeed As Integer = 8
+    Public MovementSpeed As Integer = 4
     Public dir, LastDir As Integer
     Public BlockHit As Boolean = False
     Public BlocksBroken As Integer
@@ -55,11 +56,18 @@
     Dim IntEnd As Integer = 12
     Dim InvOpen As Boolean = False
     Dim Biome As Integer
-    'Screen manager
+    Public PlayerClass As New HumanClasses
+    Public BackPack As New Inventory
+    Dim IPress As Integer
+    ' Public Player1 As New Character
+    'Public FightNPC As New NPC
+    Public Player1 As New Player
 
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Me.Show()
         Me.Focus()
+        'generation of random map
         GenerateRandomMap()
         'intiialising Game
         G = Me.CreateGraphics
@@ -71,30 +79,39 @@
     End Sub
 
     Public Overridable Sub StartGame()
-
-
+        PlayerClass.ClassAbilities() 'Specific Objective 8b)
+        PlayerClass.ClassWeapon() 'Specific Objective 13) | General Objective 11
+        initialiseItems() 'Initialises all items as objects to be used in the game
+        'Loop ensures that all operations will be running as well as the map being updated constantly
         Do While IsRunning = True
-            Movement(dir)
+
+
+            BackPack.UpdateInv() 'General Objective 9a)
+            Movement(dir) 'General Objective 4
             Application.DoEvents()
-            Character.TickCounter()
-            BuildMap()
+            BuildMap() 'General Objective 2
             timer += 1
+            Armour.CheckArmour() 'This is so that armour doesn't have to be checked every time a fight is started.
         Loop
     End Sub
 
+    Private Sub MapGenerator_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
+        dir = 0
+        InvOpen = False
+    End Sub
     Public Overridable Sub BuildMap()
-
-        For x = -1 To 96
-            For y = -1 To 96
+        'This draws the map
+        For x = -1 To 96 'General Objective 2
+            For y = -1 To 96 'General Objective 2
                 GetSourceBlock(MapX + x, MapY + y, Tilesize)
 
                 DRect = New Rectangle((x * Tilesize) + XPos, (y * Tilesize) + YPos, Tilesize, Tilesize)
                 G.DrawImage(BmpTile, DRect, SRect, GraphicsUnit.Pixel)
             Next
         Next
-        'Menu
+        'Draws a red square around whichever tile the player is hovering over
         G.DrawRectangle(Pens.Red, MouseX * Tilesize, MouseY * Tilesize, Tilesize, Tilesize)
-        'Character.DrawCharacterInfo()
+        'Debug menu 
         G.DrawString("Ticks: " & tTicks & vbCrLf &
                   "TPS: " & MaxTicks & vbCrLf &
                   "Map X: " & mMapX & vbCrLf &
@@ -106,55 +123,35 @@
                  "Wood: " & Wood & vbCrLf &
                  "", Me.Font, Brushes.Black, 1050, 0)
         'Drawing Character
-        Character.Startup()
-        Randomize()
-        NPC.DrawNPC(160, 100, Character.CharacterModel.Firemage, 3, "Normal")
-        NPC.DrawNPC(140, 40, Character.CharacterModel.CasinoMan, 1, "Casino")
-        NPC.DrawNPC(RandX, RandY, Character.CharacterModel.Kingsley, 2, "Normal")
+        Character.Startup() 'Draws character seperate to Player Class
+
+
+        Randomize() ' Used to make sure random location is picked for NPCs
+        'Drawing NPCs using (X,Y, CharacterModel, NPCType,BuildingType)
+        NPC.DrawNPC(160, 100, Character.CharacterModel.Firemage, 3, "Normal") 'Objective 3D, I),II),III), IV), V)
+        NPC.DrawNPC(140, 40, Character.CharacterModel.CasinoMan, 1, "Casino") 'Objective 3E, I),II),III)
+        NPC.DrawNPC(140, 60, Character.CharacterModel.Kingsley, 2, "Normal") 'Objective 3F, 
 
 
 
 
         'DRAW CONTENTS OF SCREENMANAGER
-        'BaseScreen.Draw()
-
-
-
 
         'Copy back buffer to graphics object
         G = Graphics.FromImage(BB)
-        'Draw Backbuffer screen
         BBG = Me.CreateGraphics
         BBG.DrawImage(BB, 0, 0, Me.Width, Me.Height)
         G.Clear(Color.DarkGreen)
-
-
-
-
     End Sub
-
-    'Private Sub TickCounter()
-
-    '    If tSec = TimeOfDay.Second Then
-    '        tTicks = tTicks + 1
-    '    Else
-    '        MaxTicks = tTicks
-    '        tTicks = 0
-    '        tSec = TimeOfDay.Second
-    '    End If
-    'End Sub
-
-
     Private Sub MapGenerator_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        'Highlights wherever the cursor is on the map 
         MouseX = Math.Floor(e.X / Tilesize)
         MouseY = Math.Floor(e.Y / Tilesize)
-
         mMapX = MouseX
         mMapY = MouseY
-
-
     End Sub
-    Enum blockID
+
+    Enum blockID 'All of these reference a block texture
         Grass = 0
         Trees1 = 1
         Trees2 = 2
@@ -190,12 +187,13 @@
         GraveStone = 36
 
 
+
     End Enum
     Public Sub GetSourceBlock(ByVal x As Integer, ByVal y As Integer, ByVal TileSize As Integer)
 
         Select Case Map(x, y, 0)
             Case blockID.Grass 'Grass
-                SRect = New Rectangle(0, 0, TileSize, TileSize)
+                SRect = New Rectangle(0, 0, TileSize, TileSize) '(XLocation of asset, YLocation of asset,Tilesize,Tilsize) The assests can be found in GFX Class
                 Map(x, y, 1) = 0
             Case blockID.Trees1 ' Trees1
                 SRect = New Rectangle(64, 0, TileSize, TileSize)
@@ -287,12 +285,7 @@
             Case Character.CharacterModel.Princess 'Princess NPC
                 SRect = New Rectangle(32, 192, TileSize, TileSize)
                 Map(x, y, 1) = 0
-            Case Character.ItemModel.HealthPot 'Health Pot
-                SRect = New Rectangle(64, 192, TileSize, TileSize)
-                Map(x, y, 1) = 0
-            Case Character.ItemModel.Sword 'Sword
-                SRect = New Rectangle(92, 192, TileSize, TileSize)
-                Map(x, y, 1) = 0
+
             Case Character.CharacterModel.Paladin 'Paladin NPC
                 SRect = New Rectangle(128, 192, TileSize, TileSize)
                 Map(x, y, 1) = 0
@@ -320,11 +313,10 @@
 
     End Sub
 
-    Public Sub MapGenerator_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDoubleClick
-        Character.PlaceBlock()
-    End Sub
+
 
     Public Sub Movement(ByVal dir As Integer) 'byval x, byval y
+        'General Objective 4 
         Select Case dir
             Case 1
                 If IsBlocked() = False Then
@@ -373,20 +365,9 @@
                 End If
 
         End Select
-        'If (mMapX = XPos And mMapY = YPos - 1 Or mMapX = XPos And mMapY = YPos + 1 Or mMapX = XPos + 1 And mMapY = YPos Or mMapX = XPos - 1 And mMapY = YPos) Then
-        'XPos = 0
-        'YPos = 0
-        'XPos = XPos + mMapX
-        'YPos = YPos + mMapY
-        'Turn += 1
-        'End If
-
-
-
-
     End Sub
     Private Function IsBlocked()
-
+        'General Objective 4b)
         Select Case dir
             Case 1 'North
                 If Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 1) = 1 Then
@@ -408,12 +389,13 @@
         Return False
     End Function
     Public Sub LoadMap(ByVal MapFile As String)
+        'General Objective 8a) 
         Try
+            'initializes StreamReader
             Dim sr As New IO.StreamReader(MapFile)
             Dim strLine As String = ""
             Dim x As Integer = 0
             Dim y As Integer = 0
-
             Do Until sr.EndOfStream
                 strLine = sr.ReadLine
                 strLine = strLine.Replace(strLine.LastIndexOf(","), "")
@@ -431,55 +413,144 @@
                 Next
                 x = 0
                 y += 1
-
             Loop
             sr.Close()
-            sr.Dispose()
+            sr.Dispose() 'Closes StreamReader to not waste memory
 
         Catch ex As Exception
-            MsgBox("Map '" & MapFile & "' could not be Loaded." & vbCrLf & vbCrLf & ex.Message, MsgBoxStyle.Critical, "ERROR")
+            MsgBox("Map '" & MapFile & "' could not be Loaded." & vbCrLf & vbCrLf & ex.Message, MsgBoxStyle.Critical, "ERROR") 'Shows error message
 
         End Try
     End Sub
+    'initialise item variables
+    Public Cobblestone As New Items
+    Public WoodPlank As New Items
+    Public GoldCoin As New Items
+    Public Flower As New Items
+    Public CactusPlant As New Items
+    Public WoodChest, WoodHelmet, WoodShoes, WoodGloves As New Items
 
-    Private Sub MapGenerator_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, Button1.KeyDown, Button1.KeyUp, CmdRandom.KeyUp, CmdRandom.KeyDown, CharModel5.KeyUp, CharModel5.KeyDown, CharModel4.KeyUp, CharModel4.KeyDown, CharModel3.KeyUp, CharModel3.KeyDown, CharModel2.KeyUp, CharModel2.KeyDown, CharModel1.KeyUp, CharModel1.KeyDown
-        dir = 0
-        InvOpen = False
+    'Dim Enemy As New NPC
+
+    Public Sub initialiseItems()
+
+        With WoodHelmet
+            .Item = ItemClass.Armour
+            .ArmourType = ArmourPiece.Head
+            .Name = "WoodenHelm"
+            .Description = "Minimal protection, better than nothing"
+            .IsStackable = False
+            .ImageAsset = My.Resources.WoodHelm
+
+        End With
+        With WoodChest
+            .Item = ItemClass.Armour
+            .ArmourType = ArmourPiece.Chest
+            .Name = "Wooden Chest"
+            .Description = "Minimal protection, better than nothing"
+            .IsStackable = False
+            .ImageAsset = My.Resources.WoodChest
+        End With
+        With WoodGloves
+            .Item = ItemClass.Armour
+            .ArmourType = ArmourPiece.Gloves
+            .Name = "Wooden Gloves"
+            .Description = "Minimal protection, better than nothing"
+            .IsStackable = False
+            .ImageAsset = My.Resources.WoodGlovesInv
+        End With
+        With WoodShoes
+            .Item = ItemClass.Armour
+            .ArmourType = ArmourPiece.Shoes
+            .Name = "Wooden Shoes"
+            .Description = "Minimal protection, better than nothing"
+            .IsStackable = False
+            .ImageAsset = My.Resources.WoodShoes
+        End With
+        With Cobblestone
+            .Item = ItemClass.Blocks
+            .Name = "Stone"
+            .Description = "Comes from the ground made from rock"
+            .IsStackable = True
+            .ImageAsset = My.Resources.Stone
+        End With
+        With WoodPlank
+            .Item = ItemClass.Blocks
+            .Name = "Wood"
+            .Description = "Wood planks can be used to create structures"
+            .IsStackable = True
+            .ImageAsset = My.Resources.Wood
+        End With
+        With Flower
+            .Item = ItemClass.Usable
+            .Name = "Flowers"
+            .Description = "Gives small health boost"
+            .IsStackable = True
+            .ImageAsset = My.Resources.InvFlowers
+        End With
+        With GoldCoin
+            .Item = ItemClass.Specials
+            .Name = "Gold Coin"
+            .Description = "These can be used at a merchant shop or casino"
+            .IsStackable = True
+            .ImageAsset = My.Resources.Coin
+        End With
+        With CactusPlant
+            .Item = ItemClass.Usable
+            .Name = "Cactus"
+            .Description = "Gives a substantial health boost"
+            .IsStackable = True
+            .ImageAsset = My.Resources.CactusInv
+        End With
     End Sub
 
-    Public Sub BreakBlock()
 
+    Public Sub BreakBlock()
+        'General Objective 5)
 
         BlocksBroken += 1
 
         Select Case LastDir
 
             Case 1
+                'Checks if area around is breakable
                 If Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 7 Or Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 8 Or Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 9 Or Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 10 Then
                 Else
 
                     Select Case Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0)
+                        'General Objective 5b)
                         Case 1
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                         Case 2
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                         Case 3
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 4
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 5
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 6
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 12
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 14
+                            BackPack.Add(CactusPlant)
                             Cactus += 1
                         Case 19
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 20
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                     End Select
+                    'General Objective 5a)
                     Select Case Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 2)
                         Case 1
                             Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 0
@@ -499,24 +570,34 @@
                 Else
                     Select Case Map(Math.Ceiling(CharX / Tilesize) - 1, CharY / Tilesize, 0)
                         Case 1
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                         Case 2
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                         Case 3
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 4
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 5
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 6
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 12
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 14
+                            BackPack.Add(CactusPlant)
                             Cactus += 1
                         Case 19
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 20
+                            BackPack.Add(WoodPlank)
                             Wood += 1
 
                     End Select
@@ -535,24 +616,34 @@
                 Else
                     Select Case Map(CharX / Tilesize, Math.Floor(CharY / Tilesize) + 1, 0)
                         Case 1
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                         Case 2
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                         Case 3
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 4
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 5
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 6
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 12
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 14
+                            BackPack.Add(CactusPlant)
                             Cactus += 1
                         Case 19
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 20
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                     End Select
                     Select Case Map(CharX / Tilesize, Math.Floor(CharY / Tilesize) + 1, 2)
@@ -572,24 +663,34 @@
                 Else
                     Select Case Map(Math.Floor(CharX / Tilesize) + 1, CharY / Tilesize, 0)
                         Case 1
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                         Case 2
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                         Case 3
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 4
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 5
+                            BackPack.Add(Flower)
                             Flowers += 1
                         Case 6
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 12
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 14
+                            BackPack.Add(CactusPlant)
                             Cactus += 1
                         Case 19
+                            BackPack.Add(Cobblestone)
                             Stone += 1
                         Case 20
+                            BackPack.Add(WoodPlank)
                             Wood += 1
                     End Select
                     Select Case Map(Math.Floor(CharX / Tilesize) + 1, CharY / Tilesize, 2)
@@ -604,7 +705,7 @@
                 End If
 
         End Select
-
+        'Interaction with NPCs
         Select Case Map(Math.Floor(CharX / Tilesize) + 1, CharY / Tilesize, 4)
             Case 1
                 Roulette.Show()
@@ -645,13 +746,16 @@
     End Sub
 
     Sub PlaceBlock()
+        'General Objective 6a)
         Select Case LastDir
-
+            'Checks the last known direction that player was looking at before then checking if it is blocked
             Case 1
 
                 If Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 7 Or Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 8 Or Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 9 Or Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 10 Then
+                    'If direction of placed block blocked then do nothing
                 Else
                     If Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 0 Or Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 11 Or Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 18 Then
+                        'If direction of placed block isn't blocked then do this 
                         If BlockInHand = "Wood" Then
                             If Wood > 0 Then
                                 Map(CharX / Tilesize, Math.Ceiling(CharY / Tilesize) - 1, 0) = 27
@@ -735,6 +839,8 @@
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        'General objective 7)
+        'Save game button
         Dim SaveGameFile
         OpenFileDialog1.ShowDialog()
         lblFile.Text = OpenFileDialog1.FileName.Replace("C:\Users\oskar\OneDrive\Documents\Computer Science NEA\Project Zombified\Project Zombified\bin\Debug\net5.0-windows\", "")
@@ -742,7 +848,36 @@
         LoadMap(SaveGameFile)
 
     End Sub
-    Public Sub MapGenerator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress, Button1.KeyPress, CmdRandom.KeyPress, CharModel5.KeyPress, CharModel4.KeyPress, CharModel3.KeyPress, CharModel2.KeyPress, CharModel1.KeyPress, SaveButton.KeyPress
+
+    Private Sub CharModel5_Click(sender As Object, e As EventArgs) Handles CharModel5.Click
+        Character.CharModel = 0
+        Character.CharModel += 4
+    End Sub
+
+    Private Sub CharModel4_Click(sender As Object, e As EventArgs) Handles CharModel4.Click
+        Character.CharModel = 0
+        Character.CharModel += 3
+    End Sub
+
+    Private Sub CharModel3_Click(sender As Object, e As EventArgs) Handles CharModel3.Click
+        Character.CharModel = 0
+        Character.CharModel += 2
+    End Sub
+
+    Private Sub CharModel2_Click(sender As Object, e As EventArgs) Handles CharModel2.Click
+        Character.CharModel = 0
+        Character.CharModel += 1
+    End Sub
+
+    Private Sub CharModel1_Click(sender As Object, e As EventArgs) Handles CharModel1.Click
+        Character.CharModel = 0
+        Character.CharModel += 0
+    End Sub
+
+
+
+    Public Sub MapGenerator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        'Input Handling sub
         Select Case e.KeyChar
             Case "w"
                 Turn += 1
@@ -803,17 +938,40 @@
 
         Select Case e.KeyChar
             Case "e"
-                ' BlocksBroken += 1
-                'If Map(x, y + 1, 1) = 1 Or Map(x - 1, y, 1) = 1 Or Map(x, y - 1, 1) = 1 Or Map(x + 1, y, 1) = 1 = True Then '
-                ' BlockHit = True
-
                 BreakBlock()
 
             Case "f"
                 PlaceBlock()
             Case "i"
-                InvInterface.UpdateInv()
-                InvInterface.Show()
+                IPress += 1
+                Select Case IPress
+                    Case IPress \ 2 = 1
+
+                        Inv11.Visible = False
+                        Inv12.Visible = False
+                        Inv13.Visible = False
+                        Inv21.Visible = False
+                        Inv22.Visible = False
+                        Inv23.Visible = False
+                        Inv31.Visible = False
+                        Inv32.Visible = False
+                        Inv33.Visible = False
+                    Case IPress \ 2 = 0
+                        Inv11.Visible = True
+                        Inv12.Visible = True
+                        Inv13.Visible = True
+                        Inv21.Visible = True
+                        Inv22.Visible = True
+                        Inv23.Visible = True
+                        Inv31.Visible = True
+                        Inv32.Visible = True
+                        Inv33.Visible = True
+
+                End Select
+
+
+                BackPack.UpdateInv()
+                'BackPack.Show()
 
 
         End Select
@@ -832,20 +990,19 @@
         Dim RndNumb As Integer = rnd.Next(0, 150)
         Return RndNumb
     End Function
-    Private Sub lblFile_Click(sender As Object, e As EventArgs) Handles lblFile.Click
 
-    End Sub
 
 
     Private Sub GenerateRandomMap()
+        'General Objective 2a), Specific Objectives 10 a I ) 
         SRect = New Rectangle(32, 0, Tilesize, Tilesize)
         Dim rnd As New Random
         Dim TileCounter, LastRnd, rndnumb As Integer
 
         Dim RandX, RandY, Count As Integer
 
-
-        For x = 0 To 50 ' (MapWidth / 2) - 3
+        'Grass Biome
+        For x = 0 To 50
             For y = 0 To (MapHeight) - 3
                 If rndnumb = LastRnd Then
                     rndnumb = rnd.Next(0, 16)
@@ -869,7 +1026,8 @@
                 End If
             Next
         Next
-        For x = 50 To 100 ' (MapWidth / 3) - 3 To MapWidth - 3
+        'Desert Biome
+        For x = 50 To 100
             TileCounter += 1
             For y = 0 To (MapHeight) - 3
                 rndnumb = 0
@@ -893,8 +1051,8 @@
                 End If
             Next
         Next
-
-        For x = 100 To 150 '(MapWidth / 4) - 3 To MapWidth / 2 - 3
+        'Snow Biome
+        For x = 100 To 150
 
             TileCounter += 1
             For y = 0 To (MapHeight) - 3
@@ -917,6 +1075,31 @@
 
 
 
+            Next
+        Next
+        'Grass Biome again
+        For x = 150 To 300
+            For y = 0 To (MapHeight) - 3
+                If rndnumb = LastRnd Then
+                    rndnumb = rnd.Next(0, 16)
+                End If
+
+
+                LastRnd = rndnumb
+                If rndnumb = 0 Or rndnumb = 1 Or rndnumb = 2 Or rndnumb = 3 Or rndnumb = 4 Or rndnumb = 5 Or rndnumb = 6 Then
+                    For i = 1 To 4
+                        Map(x + 1, y + 1, 2) = 1
+                        Map(x + 1, y + 1, 0) = rndnumb
+
+
+                    Next
+
+                End If
+
+
+                If rndnumb = 9 Or rndnumb = 10 Then
+
+                End If
             Next
         Next
         'Somehow prevents the green biome from plauging the desert
@@ -942,7 +1125,7 @@
             Map(x, 0, 0) = rnd.Next(7, 10)
             Map(x, MapX + 12, 0) = rnd.Next(7, 10)
         Next
-        For y = 11 To MapY + 11
+        For y = 28 To MapY + 28
             Map(0, y, 0) = rnd.Next(7, 10)
             Map(MapY + 19, y, 0) = rnd.Next(7, 10)
         Next
@@ -960,19 +1143,18 @@
             End If
         Next
         Map(125, 125, 0) = 25
-        'Random Item Generation
-
-        'Powerflower.MakeTransparent(Color.Magenta)
-        'G.DrawImage(HealthPot, 16 * Tilesize, 1 * Tilesize, SRect, GraphicsUnit.Pixel)
 
     End Sub
-    Public Sub SaveCharacter(ByVal CharacterFile As String)
 
+
+
+    Public Sub SaveCharacter(ByVal CharacterFile As String)
+        'General Objective 7b)
         Try
             Dim sw As New IO.StreamWriter(CharacterFile & "character" & ".IWantToSmashMyHeadAgainstAWall")
             Dim strLine As String = ""
 
-            strLine = strLine & Stone & "," & Wood & "," & Flowers & "," & Cactus & "," & Character.PlayerCoinBalance & "," & Character.HasSword & "," & CharacterCreationScreen.CharClass & "," & CharacterCreationScreen.CharModelName
+            strLine = strLine & Stone & "," & Wood & "," & Flowers & "," & Cactus & "," & Character.PlayerCoinBalance & "," & "," & CharacterCreationScreen.CharClass & "," & CharacterCreationScreen.CharModelName
 
             sw.WriteLine(strLine)
             strLine = ""
@@ -986,11 +1168,10 @@
         End Try
     End Sub
     Public Sub LoadCharacter(ByVal CharacterFile As String)
+        'General Objective 8a)
         Try
             Dim sr As New IO.StreamReader(CharacterFile)
             Dim strLine As String = ""
-
-
             Do Until sr.EndOfStream
                 strLine = sr.ReadLine
                 strLine = strLine.Replace(strLine.LastIndexOf(","), "")
@@ -1005,8 +1186,9 @@
         End Try
     End Sub
     Private Sub SaveMap(ByVal MapFile As String)
+        'General Objective 7a)
         Try
-            Dim sw As New IO.StreamWriter(MapFile & ".IWantToSmashMyHeadAgainstAWall")
+            Dim sw As New IO.StreamWriter(MapFile & ".IWantToSmashMyHeadAgainstAWall") 'Specific Objective 7a) 
             Dim strLine As String = ""
             Dim x As Integer = 0
             Dim y As Integer = 0
@@ -1029,37 +1211,42 @@
         End Try
 
     End Sub
+    ''Trigger Processing
+    'Private TriggerActiveated As Boolean = False
+    'Public Sub TeleportCharacter(Y, X)
+    '    YPos = Y
+    '    XPos = X
 
-    public Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
+    'End Sub
+    'Public Sub ProcessTrigger(TriggerScript As String)
+    '    '
+    '    TriggerActiveated = True
+    '    Dim TriggerAction As String = Split(TriggerScript, "|")(0)
+    '    Dim TriggerValue As String = Split(TriggerScript, "|")(1)
+    '    Dim TriggerParams As String = ""
+
+    '    If Split(TriggerScript, "|").Count > 2 Then
+    '        TriggerParams = Split(TriggerScript, "|")(2)
+
+    '    End If
+    '    Select Case TriggerAction
+    '        Case "LoadMap"
+
+    '        Case "Teleport"
+
+    '    End Select
+
+
+    'End Sub
+
+    Public Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
         Dim GameSaveName As String
         GameSaveName = SaveName.Text
         CharacterFile = SaveName.Text
         SaveMap(GameSaveName)
         SaveCharacter(CharacterFile)
     End Sub
-    Public Sub CharModel1_Click(sender As Object, e As EventArgs) Handles CharModel1.Click
-        Character.CharModel = 0
-        Character.CharModel += 0
-    End Sub
 
-    Public Sub CharModel2_Click(sender As Object, e As EventArgs) Handles CharModel2.Click
-        Character.CharModel = 0
-        Character.CharModel += 1
-    End Sub
-
-    Public Sub CharModel3_Click(sender As Object, e As EventArgs) Handles CharModel3.Click
-        Character.CharModel = 0
-        Character.CharModel += 2
-    End Sub
-    Public Sub CharModel4_Click(sender As Object, e As EventArgs) Handles CharModel4.Click
-        Character.CharModel = 0
-        Character.CharModel += 3
-    End Sub
-
-    Public Sub CharModel5_Click(sender As Object, e As EventArgs) Handles CharModel5.Click
-        Character.CharModel = 0
-        Character.CharModel += 4
-    End Sub
 
     Public Sub RouletteNPCTimer_Tick(sender As Object, e As EventArgs) Handles RouletteNPCTimer.Tick
 
@@ -1071,6 +1258,218 @@
             If MoveTime = 4 Then
                 MoveTime = 0
             End If
+        End If
+    End Sub
+
+    Private Sub Inv11_Click(sender As Object, e As EventArgs) Handles Inv11.Click
+        If BackPack.Items(0).Item = ItemClass.Weapon Then
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(0).ImageAsset
+            BackPack.Equip(BackPack.Items(0))
+        ElseIf BackPack.Items(0).Item = ItemClass.Armour Then
+            BackPack.Equip(BackPack.Items(0))
+            Select Case BackPack.Items(0).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(0).ImageAsset
+
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(0).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(0).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(0).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(0))
+
+        End If
+    End Sub
+
+    Private Sub Inv12_Click(sender As Object, e As EventArgs) Handles Inv12.Click
+        If BackPack.Items(1).Item = ItemClass.Weapon Then
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(1).ImageAsset
+            BackPack.Equip(BackPack.Items(1))
+        ElseIf BackPack.Items(1).Item = ItemClass.Armour Then
+
+            BackPack.Equip(BackPack.Items(1))
+            Select Case BackPack.Items(1).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(1).ImageAsset
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(1).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(1).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(1).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(1))
+        End If
+
+
+    End Sub
+    Private Sub Inv13_Click(sender As Object, e As EventArgs) Handles Inv13.Click
+        If BackPack.Items(2).Item = ItemClass.Weapon Then
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(2).ImageAsset
+            BackPack.Equip(BackPack.Items(2))
+        ElseIf BackPack.Items(2).Item = ItemClass.Armour Then
+
+            BackPack.Equip(BackPack.Items(2))
+            Select Case BackPack.Items(2).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(2).ImageAsset
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(2).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(2).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(2).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(2))
+
+        End If
+    End Sub
+    Private Sub Inv21_Click(sender As Object, e As EventArgs) Handles Inv21.Click
+        If BackPack.Items(3).Item = ItemClass.Weapon Then
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(3).ImageAsset
+            BackPack.Equip(BackPack.Items(3))
+        ElseIf BackPack.Items(3).Item = ItemClass.Armour Then
+
+            BackPack.Equip(BackPack.Items(3))
+            Select Case BackPack.Items(3).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(3).ImageAsset
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(3).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(3).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(3).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(3))
+
+
+        End If
+    End Sub
+    Private Sub Inv22_Click(sender As Object, e As EventArgs) Handles Inv22.Click
+        If BackPack.Items(4).Item = ItemClass.Weapon Then
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(4).ImageAsset
+            BackPack.Equip(BackPack.Items(4))
+        ElseIf BackPack.Items(4).Item = ItemClass.Armour Then
+
+            BackPack.Equip(BackPack.Items(4))
+            Select Case BackPack.Items(4).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(4).ImageAsset
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(4).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(4).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(4).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(4))
+
+        End If
+    End Sub
+    Private Sub Inv23_Click(sender As Object, e As EventArgs) Handles Inv23.Click
+        If BackPack.Items(5).Item = ItemClass.Weapon Then
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(5).ImageAsset
+            BackPack.Equip(BackPack.Items(5))
+        ElseIf BackPack.Items(5).Item = ItemClass.Armour Then
+
+            BackPack.Equip(BackPack.Items(5))
+            Select Case BackPack.Items(5).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(5).ImageAsset
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(5).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(5).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(5).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(5))
+
+        End If
+    End Sub
+    Private Sub Inv31_Click(sender As Object, e As EventArgs) Handles Inv31.Click
+        If BackPack.Items(6).Item = ItemClass.Weapon Then
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(6).ImageAsset
+            BackPack.Equip(BackPack.Items(6))
+        ElseIf BackPack.Items(6).Item = ItemClass.Armour Then
+
+            BackPack.Equip(BackPack.Items(6))
+            Select Case BackPack.Items(6).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(6).ImageAsset
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(6).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(6).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(6).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(6))
+
+        End If
+    End Sub
+    Private Sub Inv32_Click(sender As Object, e As EventArgs) Handles Inv32.Click
+        If BackPack.Items(7).Item = ItemClass.Weapon Then
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(7).ImageAsset
+            BackPack.Equip(BackPack.Items(7))
+        ElseIf BackPack.Items(7).Item = ItemClass.Armour Then
+
+            BackPack.Equip(BackPack.Items(7))
+            Select Case BackPack.Items(7).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(7).ImageAsset
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(7).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(7).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(7).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(7))
+
+        End If
+    End Sub
+    Private Sub Inv33_Click(sender As Object, e As EventArgs) Handles Inv33.Click
+        If BackPack.Items(8).Item = ItemClass.Weapon Then
+
+            'remove item from inventory
+            WeaponSlot.BackgroundImage = BackPack.Items(8).ImageAsset
+            BackPack.Equip(BackPack.Items(8))
+        ElseIf BackPack.Items(8).Item = ItemClass.Armour Then
+
+            BackPack.Equip(BackPack.Items(8))
+            Select Case BackPack.Items(8).ArmourType
+                Case ArmourPiece.Head
+                    HeadSlot.BackgroundImage = BackPack.Items(8).ImageAsset
+                Case ArmourPiece.Chest
+                    ChestSlot.BackgroundImage = BackPack.Items(8).ImageAsset
+                Case ArmourPiece.Gloves
+                    LegSlot.BackgroundImage = BackPack.Items(8).ImageAsset
+                Case ArmourPiece.Shoes
+                    ShoeSlot.BackgroundImage = BackPack.Items(8).ImageAsset
+            End Select
+        Else
+            BackPack.Remove(BackPack.Items(8))
+
         End If
     End Sub
 End Class

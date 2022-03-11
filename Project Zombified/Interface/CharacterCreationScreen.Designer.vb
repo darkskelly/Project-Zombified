@@ -65,6 +65,7 @@ Partial Class CharacterCreationScreen
         'Class_Ranged
         '
         Me.Class_Ranged.BackgroundImage = Global.Project_Zombified.My.Resources.Resources.MageIcon
+        Me.Class_Ranged.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Class_Ranged.Location = New System.Drawing.Point(12, 128)
         Me.Class_Ranged.Name = "Class_Ranged"
         Me.Class_Ranged.Size = New System.Drawing.Size(75, 75)
@@ -74,6 +75,7 @@ Partial Class CharacterCreationScreen
         'Class_Hunter
         '
         Me.Class_Hunter.BackgroundImage = CType(resources.GetObject("Class_Hunter.BackgroundImage"), System.Drawing.Image)
+        Me.Class_Hunter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Class_Hunter.Location = New System.Drawing.Point(12, 47)
         Me.Class_Hunter.Name = "Class_Hunter"
         Me.Class_Hunter.Size = New System.Drawing.Size(75, 75)
@@ -82,6 +84,7 @@ Partial Class CharacterCreationScreen
         '
         'Class_Paladin
         '
+        Me.Class_Paladin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Class_Paladin.Image = Global.Project_Zombified.My.Resources.Resources.PaladinIcon
         Me.Class_Paladin.Location = New System.Drawing.Point(12, 366)
         Me.Class_Paladin.Name = "Class_Paladin"
@@ -92,6 +95,7 @@ Partial Class CharacterCreationScreen
         'Class_Tank
         '
         Me.Class_Tank.BackgroundImage = Global.Project_Zombified.My.Resources.Resources.TankIcon
+        Me.Class_Tank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Class_Tank.Location = New System.Drawing.Point(12, 209)
         Me.Class_Tank.Name = "Class_Tank"
         Me.Class_Tank.Size = New System.Drawing.Size(75, 75)
@@ -101,6 +105,7 @@ Partial Class CharacterCreationScreen
         'Class_Warrior
         '
         Me.Class_Warrior.BackgroundImage = CType(resources.GetObject("Class_Warrior.BackgroundImage"), System.Drawing.Image)
+        Me.Class_Warrior.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Class_Warrior.Location = New System.Drawing.Point(12, 289)
         Me.Class_Warrior.Name = "Class_Warrior"
         Me.Class_Warrior.Size = New System.Drawing.Size(75, 75)
@@ -109,10 +114,10 @@ Partial Class CharacterCreationScreen
         '
         'CharSelectionPic
         '
-        Me.CharSelectionPic.Image = Global.Project_Zombified.My.Resources.Resources.WarriorChar
-        Me.CharSelectionPic.Location = New System.Drawing.Point(245, 70)
+        Me.CharSelectionPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.CharSelectionPic.Location = New System.Drawing.Point(240, 64)
         Me.CharSelectionPic.Name = "CharSelectionPic"
-        Me.CharSelectionPic.Size = New System.Drawing.Size(123, 123)
+        Me.CharSelectionPic.Size = New System.Drawing.Size(136, 136)
         Me.CharSelectionPic.TabIndex = 6
         Me.CharSelectionPic.TabStop = False
         '
@@ -148,33 +153,39 @@ Partial Class CharacterCreationScreen
         'LuckBar
         '
         Me.LuckBar.BackColor = System.Drawing.SystemColors.MenuText
-        Me.LuckBar.Location = New System.Drawing.Point(630, 377)
+        Me.LuckBar.ForeColor = System.Drawing.Color.Lime
+        Me.LuckBar.Location = New System.Drawing.Point(564, 383)
         Me.LuckBar.Name = "LuckBar"
         Me.LuckBar.Size = New System.Drawing.Size(143, 52)
+        Me.LuckBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.LuckBar.TabIndex = 20
         '
         'LuckButton
         '
-        Me.LuckButton.Location = New System.Drawing.Point(444, 377)
+        Me.LuckButton.BackgroundImage = Global.Project_Zombified.My.Resources.Resources.Coin
+        Me.LuckButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.LuckButton.Location = New System.Drawing.Point(476, 370)
         Me.LuckButton.Name = "LuckButton"
-        Me.LuckButton.Size = New System.Drawing.Size(157, 52)
+        Me.LuckButton.Size = New System.Drawing.Size(72, 72)
         Me.LuckButton.TabIndex = 19
-        Me.LuckButton.Text = "Luck"
         Me.LuckButton.UseVisualStyleBackColor = True
         '
         'DexterityBar
         '
         Me.DexterityBar.BackColor = System.Drawing.SystemColors.MenuText
-        Me.DexterityBar.Location = New System.Drawing.Point(630, 300)
+        Me.DexterityBar.ForeColor = System.Drawing.Color.Lime
+        Me.DexterityBar.Location = New System.Drawing.Point(562, 302)
         Me.DexterityBar.Name = "DexterityBar"
         Me.DexterityBar.Size = New System.Drawing.Size(143, 52)
+        Me.DexterityBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.DexterityBar.TabIndex = 18
         '
         'DexterityButton
         '
-        Me.DexterityButton.Location = New System.Drawing.Point(444, 300)
+        Me.DexterityButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.DexterityButton.Location = New System.Drawing.Point(476, 293)
         Me.DexterityButton.Name = "DexterityButton"
-        Me.DexterityButton.Size = New System.Drawing.Size(157, 52)
+        Me.DexterityButton.Size = New System.Drawing.Size(72, 72)
         Me.DexterityButton.TabIndex = 17
         Me.DexterityButton.Text = "Dexterity"
         Me.DexterityButton.UseVisualStyleBackColor = True
@@ -182,52 +193,61 @@ Partial Class CharacterCreationScreen
         'IntellegenceBar
         '
         Me.IntellegenceBar.BackColor = System.Drawing.SystemColors.MenuText
-        Me.IntellegenceBar.Location = New System.Drawing.Point(630, 224)
+        Me.IntellegenceBar.ForeColor = System.Drawing.Color.Lime
+        Me.IntellegenceBar.Location = New System.Drawing.Point(562, 232)
         Me.IntellegenceBar.Name = "IntellegenceBar"
         Me.IntellegenceBar.Size = New System.Drawing.Size(143, 52)
+        Me.IntellegenceBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.IntellegenceBar.TabIndex = 16
         '
         'IntellegenceButton
         '
-        Me.IntellegenceButton.Location = New System.Drawing.Point(444, 224)
+        Me.IntellegenceButton.BackgroundImage = Global.Project_Zombified.My.Resources.Resources.HumanBrainIcon
+        Me.IntellegenceButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.IntellegenceButton.Location = New System.Drawing.Point(476, 217)
         Me.IntellegenceButton.Name = "IntellegenceButton"
-        Me.IntellegenceButton.Size = New System.Drawing.Size(157, 52)
+        Me.IntellegenceButton.Size = New System.Drawing.Size(72, 72)
         Me.IntellegenceButton.TabIndex = 15
-        Me.IntellegenceButton.Text = "Intellegence"
         Me.IntellegenceButton.UseVisualStyleBackColor = True
         '
         'StrengthBar
         '
         Me.StrengthBar.BackColor = System.Drawing.SystemColors.MenuText
-        Me.StrengthBar.Location = New System.Drawing.Point(630, 146)
+        Me.StrengthBar.ForeColor = System.Drawing.Color.Lime
+        Me.StrengthBar.Location = New System.Drawing.Point(562, 148)
         Me.StrengthBar.Name = "StrengthBar"
         Me.StrengthBar.Size = New System.Drawing.Size(143, 52)
+        Me.StrengthBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.StrengthBar.TabIndex = 14
         '
         'StrengthStatButton
         '
-        Me.StrengthStatButton.Location = New System.Drawing.Point(444, 146)
+        Me.StrengthStatButton.BackgroundImage = Global.Project_Zombified.My.Resources.Resources.StrengthIcon
+        Me.StrengthStatButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.StrengthStatButton.Location = New System.Drawing.Point(476, 139)
         Me.StrengthStatButton.Name = "StrengthStatButton"
-        Me.StrengthStatButton.Size = New System.Drawing.Size(157, 52)
+        Me.StrengthStatButton.Size = New System.Drawing.Size(72, 72)
         Me.StrengthStatButton.TabIndex = 13
-        Me.StrengthStatButton.Text = "Strength"
         Me.StrengthStatButton.UseVisualStyleBackColor = True
         '
         'MovementSpeedBar
         '
         Me.MovementSpeedBar.BackColor = System.Drawing.SystemColors.MenuText
-        Me.MovementSpeedBar.Location = New System.Drawing.Point(630, 70)
+        Me.MovementSpeedBar.ForeColor = System.Drawing.Color.Lime
+        Me.MovementSpeedBar.Location = New System.Drawing.Point(562, 70)
         Me.MovementSpeedBar.Name = "MovementSpeedBar"
         Me.MovementSpeedBar.Size = New System.Drawing.Size(143, 52)
+        Me.MovementSpeedBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.MovementSpeedBar.TabIndex = 12
         '
         'Movement
         '
-        Me.Movement.Location = New System.Drawing.Point(444, 70)
+        Me.Movement.BackgroundImage = Global.Project_Zombified.My.Resources.Resources.MovementSpeedIcon
+        Me.Movement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Movement.Location = New System.Drawing.Point(476, 63)
         Me.Movement.Name = "Movement"
-        Me.Movement.Size = New System.Drawing.Size(157, 52)
+        Me.Movement.Size = New System.Drawing.Size(72, 72)
         Me.Movement.TabIndex = 11
-        Me.Movement.Text = "Movement Speed"
         Me.Movement.UseVisualStyleBackColor = True
         '
         'Skills_Label
@@ -276,14 +296,15 @@ Partial Class CharacterCreationScreen
         Me.PlayerLevelLabel.Name = "PlayerLevelLabel"
         Me.PlayerLevelLabel.Size = New System.Drawing.Size(149, 19)
         Me.PlayerLevelLabel.TabIndex = 25
-        Me.PlayerLevelLabel.Text = "You are Level 1"
+        Me.PlayerLevelLabel.Text = "You are Level 0"
         '
         'CharacterCreationScreen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.BlueViolet
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(786, 447)
         Me.Controls.Add(Me.PlayerLevelLabel)
         Me.Controls.Add(Me.SkillPointsLabel)
         Me.Controls.Add(Me.CharName)

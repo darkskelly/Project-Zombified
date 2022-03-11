@@ -1,4 +1,5 @@
 ﻿Public Class Roulette
+
     Dim BetRed, BetBlack, BetOdd, BetEven, Odd, Even, Red, Black, NewRoundTimer As Boolean
     Dim SpinNumb, second As Integer
     Public Balance As Integer
@@ -178,7 +179,7 @@
 
     Function CheckBal()
         Dim CanBet As Boolean
-        If Character.PlayerCoinBalance > 0 And BetAmount.Text > "" Then
+        If Character.PlayerCoinBalance > 0 Then
             CanBet = True
         Else
             CanBet = False

@@ -9,8 +9,8 @@
             .Name = "Red Flower"
             .Description = "Heals you a little bit"
             .IsStackable = True
-            .ImageAsset = "Items" 'TO DO load from item list in map file
-            .SRect = New Rectangle(0, 0, 16, 16)
+            .ImageAsset = My.Resources.Florance
+
 
         End With
         PlayerPockets.Add(i)

@@ -116,22 +116,27 @@ Partial Class FightScreen
         '
         'EnemyHealth
         '
+        Me.EnemyHealth.BackColor = System.Drawing.Color.Lime
+        Me.EnemyHealth.ForeColor = System.Drawing.Color.Lime
         Me.EnemyHealth.Location = New System.Drawing.Point(596, 250)
         Me.EnemyHealth.MarqueeAnimationSpeed = 1000
         Me.EnemyHealth.Maximum = 120
         Me.EnemyHealth.Name = "EnemyHealth"
         Me.EnemyHealth.Size = New System.Drawing.Size(160, 29)
         Me.EnemyHealth.TabIndex = 8
+        Me.EnemyHealth.Value = 120
         '
         'PlayerHealth
         '
+        Me.PlayerHealth.BackColor = System.Drawing.Color.Lime
+        Me.PlayerHealth.ForeColor = System.Drawing.Color.Lime
         Me.PlayerHealth.Location = New System.Drawing.Point(316, 482)
         Me.PlayerHealth.MarqueeAnimationSpeed = 1000
         Me.PlayerHealth.Maximum = 120
         Me.PlayerHealth.Name = "PlayerHealth"
         Me.PlayerHealth.Size = New System.Drawing.Size(160, 29)
         Me.PlayerHealth.TabIndex = 9
-        Me.PlayerHealth.Value = 20
+        Me.PlayerHealth.Value = 120
         '
         'PlayerHealthLabel
         '
@@ -218,7 +223,7 @@ Partial Class FightScreen
         Me.WinLooseLabel.Font = New System.Drawing.Font("Algerian", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.WinLooseLabel.Location = New System.Drawing.Point(232, 174)
         Me.WinLooseLabel.Name = "WinLooseLabel"
-        Me.WinLooseLabel.Size = New System.Drawing.Size(163, 38)
+        Me.WinLooseLabel.Size = New System.Drawing.Size(156, 36)
         Me.WinLooseLabel.TabIndex = 18
         Me.WinLooseLabel.Text = "You Died"
         Me.WinLooseLabel.Visible = False
