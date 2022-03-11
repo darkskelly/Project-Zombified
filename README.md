@@ -2,96 +2,93 @@
 A Level coursework
 This is a piece of A-Level coursework created from (08/01/2021|8th of January 2021) - (01/04/2022| 1st of April 2022)
 The game most likely will not be complete by the end of this deadline but I will try to finish it.
-Objectives are as follows:
-Zombie AI learns (Aspirational) 
+Objectives are as follows
 
-After each game played or each iteration the zombie gets better and better at the game 
-
-This idea is probably too optimistic but still a nice idea 
-
-Zombies 
-Detection 
-Health  
-Evolution 
-Mutations 
-Different Breeds of zombies 
-Humans 
-Health 
-Skills 
-Different Human Classes 
-Skills for all classes 
-Maps 
-Procedurally generated
-EXP and Levels 
+1)	Player able to start game
+a)	Player is able to choose a class
+ i)	Refer to Specific objectives 8
  
-------------------------------------------------------------------------------------------------------------------------------------------------------
-1) Zombies
-A)Detection 
-If in the line of sight of a zombie, it will run directly towards human 
-If outside of the line of sight but shooting zombie will ‘hear’ and run towards the noise until line of sight is established, then run towards player/human 
-If a human goes round a corner a zombie will follow them if when the zombie turns the corner it still has a line of sight, if not zombie will go and try find a new target 
+b)	Player is able to choose character model
 
-B)Health 
-Health must go down when player shoots and hits the zombie depending on area 
+c)	Player is able to assign stats to character
+ i)	Stats affect player refer to specific objectives 9
+ 
+d)	Game starts and GUI loads
 
-C)Mutations
-Zombies have a random chance of gaining a random trait such as speed or extra health every time there is a new infection 
-Zombies have a chance of mutating into a different type of zombie 
+2)	Map Loads
+a)	Map Generator creates a procedurally generated map
 
-D)Breeds of Zombies  
-Boomers - Move slower than standard zombies, MUCH higher health than standard zombies, Special ability: Whenever in proximity of a healthy AI then the ‘boomer’ will explode and anything within a certain radius becomes infected but the boomer is used up within this 
-Jumpers - Movement is increased massively, Health is lower than a standard zombie around 20-30%,  
-Heavies - Movement is very slow, Health is double a boomer's health (4 times standard zombies health), Special ability: Does AOE ability which infects health AI in the proximity, can only be shot in certain areas of body 
-Crawlers - Movement is very fast, half the health of a standard zombie, Special ability: Can be created by only shooting the legs of a zombie 
-Berserkers - Quicker than a standard zombie, More health than a standard zombie, special ability: Once shot they will run towards you and only focus on your even if a Healthy AI is closer 
-------------------------------------------------------------------------------------------------------------------------------------------------------
-2)Humans 
+b)	Blocked tiles are assigned (x,y,1) = 1
 
-A)Health 
-Health must go down when a zombie ‘attacks’ a human entity 
-Health can get regenerated after finding ‘health packs’ that have a chance to drop from zombies 
+3)	NPCs Spawn
+a)	DrawNPCs has parameters passed through it to create a predetermined structure to the map with the NPC inside of it 
 
-B)Skills 
-Each human starts with randomly generated skills such as Speed, Health, Stamina  
-Skills can be increased after killing a certain number of zombies or using an EXP system 
-Skills will be /10 
-Skills are kept throughout maps 
+b)	NPC should load up their respective NPC interface when interacted with “e”
 
-C)Human Classes 
-Ranged class - Lightly armoured, Standard health, Special Ability: Long range high damage weapon, Higher Vision,  
-Warrior Class - Medium Armoured, Slightly higher health, Special ability: Close range melee weapon with short range side arm, Can spin with weapon to do an AOE attack,  
-Paladin Class - Medium Armoured, Standard health, Special ability : Can turn zombies back into humans with AOE ability also has a hammer, Can heal humans but uses up stamina for paladin   
-Hunter Class - Lightly armoured, less health than stander, Weapon: Medium ranged, Special ability: Has a pet who will fight alongside Hunter class, after certain amount of levels more pets can be summoned  
-Tank Class - Heavily armoured, Lots of health, Weapon: Close/medium range ,Special ability : Can take a lot more damage than a standard Human, Can stun enemies even the different breeds of zombies  
-------------------------------------------------------------------------------------------------------------------------------------------------------
-3)Skills 
-Speed - Determines the movement speed of entity 
-Health - Determines the Health of the entity 
-Health Regeneration - Determines the Health Regeneration of an entity 
-Stamina - Determines how long an entity can run for 
-Dexterity - Determines how long it takes for a human to reload a gun or a zombie to charge for another attack 
-Resistance - Determines how many bites a Human can take before being turned into a zombie 
-------------------------------------------------------------------------------------------------------------------------------------------------------
-4)Maps  
-Open world? 
-Procedurally generated 
-Levels will always change and be different 
-Progressively gets harder 
-Set Maps 
-Maps would not be the same each time 
-Every time a map is played it changes the layout after  
-Could have a list of layouts for the map and change between them instead of procedurally generated 
-Would get harder each time  
-------------------------------------------------------------------------------------------------------------------------------------------------------
-5) EXP and Levels 
-Players would gain EXP throughout the levels that they play 
-Progressively zombies will get harder and have higher health 
-This scales with the level that a player is 
-EXP goes towards the level of a class 
-Different abilities unlocked by going up levels 
-Zombies do not gain more special abilities as they level up, they will only get more health and have their skill points 
-------------------------------------------------------------------------------------------------------------------------------------------------------
-6) Multiplayer aspects of the game (Optimistic) 
-Would be added at the end of development 
-It would allow players to play as either Humans or Zombies or both! 
-One player could be a zombie and one could be a Human 
+c)	Map tile with NPC should be (x,y,3) = 0-4
+
+d)	Player is able to fight NPC
+
+ i)	When NPC interacted with “e” the fight screen is shown 
+
+ ii)	Player is able to press buttons to cause a dice roll to occur 
+ 
+ iii)	Sum of dice roll is calculated and inflicted on enemy NPC
+ 
+ iv)	If fight won player awarded 50 experience
+ 
+ v)	After 200 experience is gained then player will level up and have 2 more stat points to assign
+ 
+ vi)	NPCs will attack randomly when walking around in areas with Flower, Cacti, or tall grass
+ 
+e)	Player is able to use Casino NPC
+ i)	When Casino NPC is interacted with “e” the Casino menu is shown
+
+ ii)	Player is able to deposit materials such as wood or stone in exchange for currency. 
+ 
+ iii)	A fair roll is made and the outcome output onto the screen
+ 
+f)	Player is able to use Merchant NPC
+ i)	When Merchant NPC is interacted with “e” the merchant menu is shown
+
+ii)	Player is able to sell materials such as wood, stone, flowers, Iron and armour for currency.
+
+iii)	Player is able to buy items such as armour and weapons in exchange for currency.
+
+(1)	Armour is referred to in Specific Objective 12
+
+4)	Player is able to move
+
+a)	Player can use “W,A,S,D” to input movement commands to the game
+
+b)	Player is blocked by terrain such as Trees, Mountains and ocean tiles. 
+
+5)	Player able to break blocks in the game
+a)	When a block is broken the tile placed on the broken block should match the biome that block is in
+
+b)	Block player broke returned to inventory
+
+6)	Player able to place block 
+a)	Player can press “f” and place a tile in front of them as long as the tile is not a blocked tile
+
+7)	Player is able save game
+a)	When save game button is pressed a name for the save should be input
+
+b)	Currant game state and player stats will be saved and be able to be loaded in at a later date
+
+8)	Player is able to resume a game
+a)	Player can load a save file made previously and get back to the previous game state with player stats and all.
+
+9)	Player is able to open inventory
+a)	Player presses an input to open the inventory where they can see what materials/armour/weapons they have in their inventory. 
+
+b)	Inventory must be saved in character save
+
+10)	Weapons have an affect on combat
+a)	Depending on the class the weapons the class uses will have different effects and do more or less damage
+
+b)	Weapons can be upgraded with gold to do more damage
+11)	Armour has an effect on combat
+a)	Armour when equipped gives more protection to the user when fighting
+
+b)	The highest tier of armour has special effects e.g teleportation. 
